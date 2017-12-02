@@ -5,7 +5,7 @@ int		main(void)
 {
 	t_env env;
 	t_err err;
-	
+
 	philo_init_system(&env.sys);
 	if (SDL_Init(SDL_INIT_VIDEO))
 	{
@@ -27,6 +27,7 @@ int		main(void)
 		philo_error(&env, err);
 		return (err);
 	}
+	philo_init_philosophers(&env);
 	philo_init_rect(&env);
 	philo_init_pos(env.pos);
 	if (!philo_main_loop(&env))

@@ -17,6 +17,14 @@
 
 # define NBR_TEXTURES 15
 
+# define POS_BAGUETTE_NOR 0
+# define POS_BAGUETTE_RIGHT 7
+# define POS_BAGUETTE_LEFT 14
+
+
+# define STATE_REST 0
+# define STATE_THINK 1
+# define STATE_EAT 2
 /*
 ** E_INIT ini error
 */
@@ -50,9 +58,21 @@ typedef struct	s_texture
 	SDL_Texture			*tex;
 	SDL_Rect			rect_s;
 	unsigned int		pos;
-	//SDL_Rect			*rect_d;
 
 }				t_texture;
+
+typedef struct s_baguette
+{
+	int			pos; // 0 normal ; 7  right; 14 left
+	int			mutex;
+}				t_baguette;
+
+typedef struct s_philosophers
+{
+	int			hp;
+	int			state;
+	t_baguette	baguette;
+}				t_philosphers;
 
 /*
 ** typedef struct s_sdl t_sdl
@@ -82,6 +102,7 @@ typedef struct	s_env
 	t_window		win;
 	t_pos			pos[29];
 	t_texture		texture[NBR_TEXTURES];
+	t_philosphers	philosophers[7];
 }				t_env;
 
 /*
@@ -103,6 +124,8 @@ t_err	philo_init_env(t_env *e);
 t_err	philo_init_display(t_env *env);
 t_err	philo_init_rect(t_env *env);
 t_err	philo_init_baguette(t_env *env);
+
+void	philo_init_philosophers(t_env *env);
 /*
 ********************************************************************************
 **									DISPLAY

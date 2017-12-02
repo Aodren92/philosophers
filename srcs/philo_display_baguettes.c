@@ -3,6 +3,7 @@
 # define DEBUG_POS_NORM 0
 # define DEBUG_POS_RIGHT 7
 # define DEBUG_POS_LEFT 14
+
 void	philo_display_baguettes(t_env *e)
 {
 	unsigned int i;

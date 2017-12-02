@@ -11,19 +11,29 @@ t_err	philo_init_env(t_env *e)
 {
 	e->win.width = 1280;
 	e->win.height = 720;
-	//fractol_reset_view(&(e->var));
 	if ((e->sys.win = SDL_CreateWindow(WIN_NAME, SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED, e->win.width, e->win.height,
 			0)) == NULL)
 		return (E_WINDOW);
 	if ((e->sys.renderer = SDL_CreateRenderer(e->sys.win, -1, SDL_RENDERER_ACCELERATED)) == NULL)
 		return (E_RENDERER);
-/*
-	if ((e->fractal.surf = SDL_CreateRGBSurface(0, e->var.win_width, e->var.win_height,
-			32, 0, 0, 0, 0)) == NULL)
-		return (E_SURFACE);
-*/
 	return (NONE);
+}
+
+
+void	philo_init_philosophers(t_env *env)
+{
+	unsigned int i;
+	i = 0;
+	while (i < 7)
+	{
+		env->philosophers[i].hp = MAX_LIFE;
+		env->philosophers[i].state = STATE_REST;
+		env->philosophers[i].baguette.pos = POS_BAGUETTE_NOR;
+		env->philosophers[i].baguette.mutex = 0;
+		++i;
+	}
+
 }
 
 
