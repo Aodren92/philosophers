@@ -33,7 +33,14 @@ t_err			philo_main_loop(t_env *e)
 				}
 			}
 			SDL_RenderClear(e->sys.renderer);
-			SDL_RenderCopy(e->sys.renderer, e->sys.bitmaptex, NULL, NULL);
+			SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
+			int i = 1;
+			while (i < 8)
+			{
+				SDL_RenderCopy(e->sys.renderer, e->texture[i].tex,
+						&e->texture[i].rect_s, &e->texture[i].rect_d);
+				i++;
+			}
 			SDL_RenderPresent(e->sys.renderer);
 #if 0
 			if (e->var.render == 1)

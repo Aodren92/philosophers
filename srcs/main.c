@@ -22,6 +22,7 @@ int		main(void)
 		philo_error(&env, err);
 		return (err);
 	}
+	philo_init_rect(&env);
 	if (!philo_main_loop(&env))
 		SDL_Quit(); 
 	return (NONE);

@@ -13,6 +13,9 @@
 # define DAMAGE_PER_S 1
 
 # define WIN_NAME "PHILO"
+
+
+# define NBR_TEXTURES 8
 /*
 ** E_INIT ini error
 */
@@ -32,16 +35,24 @@ typedef enum	e_err
 	E_TTF_SURF,
 }				t_err;
 
+
+typedef struct	s_texture
+{
+	SDL_Texture		*tex;
+	SDL_Rect		rect_s;
+	SDL_Rect		rect_d;
+}				t_texture;
+
 /*
 ** typedef struct s_sdl t_sdl
 ** manage SDL
 */
 
+
 typedef struct	s_system
 {
 	SDL_Window		*win;
 	SDL_Renderer	*renderer;
-	SDL_Texture		*bitmaptex;
 	SDL_Event		ev;
 }				t_system;
 
@@ -59,6 +70,7 @@ typedef struct	s_env
 {
 	t_system	sys;
 	t_window	win;
+	t_texture	texture[NBR_TEXTURES];
 }				t_env;
 
 /*
@@ -78,6 +90,7 @@ t_err	philo_init_env(t_env *e);
 ** Create Display
 */
 t_err	philo_init_display(t_env *env);
+t_err	philo_init_rect(t_env *env);
 /*
 ********************************************************************************
 **									SYSTEM
