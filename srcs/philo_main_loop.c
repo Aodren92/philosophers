@@ -34,19 +34,17 @@ t_err			philo_main_loop(t_env *e)
 			}
 			SDL_RenderClear(e->sys.renderer);
 			SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
+			philo_display_philosophers(e);
+			philo_display_baguettes(e);
+#if 0
 			int i = 1;
 			while (i < 15)
 			{
-#if 0
 				SDL_RenderCopy(e->sys.renderer, e->texture[i].tex,
 						&e->texture[i].rect_s, &e->texture[i].rect_d);
-#endif
-				SDL_RenderCopyEx(e->sys.renderer, e->texture[i].tex,
-						&e->texture[i].rect_s, &e->texture[i].rect_d,
-						e->texture[i].angle, e->texture[i].center,
-						e->texture[i].flip);
 				i++;
 			}
+#endif
 			SDL_RenderPresent(e->sys.renderer);
 #if 0
 			if (e->var.render == 1)

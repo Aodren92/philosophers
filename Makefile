@@ -11,7 +11,8 @@ CFLAGS = -Wall -Werror -Wextra -O2
 OBJ_DIR_NAME = obj
 
 SRCS_NAME = main.c philo_init.c philo_error.c philo_exit.c philo_main_loop.c\
-			philo_error.c
+			philo_error.c philo_init_pos.c philo_display_philosophers.c\
+			philo_display_baguettes.c
 
 SRCS_PATH = ./srcs/
 

@@ -90,161 +90,95 @@ t_err	philo_init_display(t_env *env)
 
 t_err	philo_init_rect(t_env *env)
 {
+	//philosophers
 	env->texture[1].rect_s.x = 0;
 	env->texture[1].rect_s.y = 0;
 	env->texture[1].rect_s.w = 150;
 	env->texture[1].rect_s.h = 150;
-	env->texture[1].rect_d.x = 380;
-	env->texture[1].rect_d.y = 290;
-	env->texture[1].rect_d.w = 70;
-	env->texture[1].rect_d.h = 75;
-	env->texture[1].angle = 0;
-	env->texture[1].center = 0;
+	env->texture[1].pos = 1;
+
 
 	env->texture[2].rect_s.x = 0;
 	env->texture[2].rect_s.y = 0;
 	env->texture[2].rect_s.w = 150;
 	env->texture[2].rect_s.h = 150;
-	env->texture[2].rect_d.x = 600;
-	env->texture[2].rect_d.y = 220;
-	env->texture[2].rect_d.w = 70;
-	env->texture[2].rect_d.h = 75;
-	env->texture[2].angle = 0;
-	env->texture[2].center = 0;
+	env->texture[2].pos = 2;
+
 
 	env->texture[3].rect_s.x = 0;
 	env->texture[3].rect_s.y = 0;
 	env->texture[3].rect_s.w = 150;
 	env->texture[3].rect_s.h = 150;
-	env->texture[3].rect_d.x = 190;
-	env->texture[3].rect_d.y = 340;
-	env->texture[3].rect_d.w = 70;
-	env->texture[3].rect_d.h = 75;
-	env->texture[3].angle = 0;
-	env->texture[3].center = 0;
+	env->texture[3].pos = 3;
 
 	env->texture[4].rect_s.x = 0;
 	env->texture[4].rect_s.y = 0;
 	env->texture[4].rect_s.w = 150;
 	env->texture[4].rect_s.h = 160;
-	env->texture[4].rect_d.x = 140;
-	env->texture[4].rect_d.y = 440;
-	env->texture[4].rect_d.w = 80;
-	env->texture[4].rect_d.h = 85;
-	env->texture[4].angle = 0;
-	env->texture[4].center = 0;
+	env->texture[4].pos = 4;
+
 
 	env->texture[5].rect_s.x = 0;
 	env->texture[5].rect_s.y = 0;
 	env->texture[5].rect_s.w = 150;
 	env->texture[5].rect_s.h = 150;
-	env->texture[5].rect_d.x = 850;
-	env->texture[5].rect_d.y = 285;
-	env->texture[5].rect_d.w = 70;
-	env->texture[5].rect_d.h = 75;
-	env->texture[5].angle = 0;
-	env->texture[5].center = 0;
+	env->texture[5].pos = 5;
 
 	env->texture[6].rect_s.x = 0;
 	env->texture[6].rect_s.y = 0;
 	env->texture[6].rect_s.w = 150;
 	env->texture[6].rect_s.h = 150;
-	env->texture[6].rect_d.x = 1070;
-	env->texture[6].rect_d.y = 330;
-	env->texture[6].rect_d.w = 70;
-	env->texture[6].rect_d.h = 75;
-	env->texture[6].angle = 0;
-	env->texture[6].center = 0;
+	env->texture[5].pos = 6;
 
 	env->texture[7].rect_s.x = 0;
 	env->texture[7].rect_s.y = 0;
 	env->texture[7].rect_s.w = 150;
 	env->texture[7].rect_s.h = 150;
-	env->texture[7].rect_d.x = 1130;
-	env->texture[7].rect_d.y = 450;
-	env->texture[7].rect_d.w = 80;
-	env->texture[7].rect_d.h = 85;
-	env->texture[7].angle = 0;
-	env->texture[7].center = 0;
+	env->texture[5].pos = 7;
 
 		// baguettes
 	env->texture[8].rect_s.x = 40;
 	env->texture[8].rect_s.y = 0;
 	env->texture[8].rect_s.w = 564;
 	env->texture[8].rect_s.h = 1168;
-	env->texture[8].rect_d.x = 350;
-	env->texture[8].rect_d.y = 540;
-	env->texture[8].rect_d.w = 30;
-	env->texture[8].rect_d.h = 85;
-	env->texture[8].angle = 70;
-	env->texture[8].center = 0;
+	env->texture[8].pos = 8;
 
 
 	env->texture[9].rect_s.x = 40;
 	env->texture[9].rect_s.y = 0;
 	env->texture[9].rect_s.w = 564;
 	env->texture[9].rect_s.h = 1168;
-	env->texture[9].rect_d.x = 360;
-	env->texture[9].rect_d.y = 470;
-	env->texture[9].rect_d.w = 30;
-	env->texture[9].rect_d.h = 85;
-	env->texture[9].angle = 90;
-	env->texture[9].center = 0;
+	env->texture[9].pos = 9;
 
 	env->texture[10].rect_s.x = 40;
 	env->texture[10].rect_s.y = 0;
 	env->texture[10].rect_s.w = 564;
 	env->texture[10].rect_s.h = 1168;
-	env->texture[10].rect_d.x = 490;
-	env->texture[10].rect_d.y = 420;
-	env->texture[10].rect_d.w = 30;
-	env->texture[10].rect_d.h = 85;
-	env->texture[10].angle = 120;
-	env->texture[10].center = 0;
+	env->texture[10].pos = 10;
 
 	env->texture[11].rect_s.x = 40;
 	env->texture[11].rect_s.y = 0;
 	env->texture[11].rect_s.w = 564;
 	env->texture[11].rect_s.h = 1168;
-	env->texture[11].rect_d.x = 620;
-	env->texture[11].rect_d.y = 420;
-	env->texture[11].rect_d.w = 30;
-	env->texture[11].rect_d.h = 85;
-	env->texture[11].angle = 180;
-	env->texture[11].center = 0;
+	env->texture[11].pos = 11;
 
 	env->texture[12].rect_s.x = 40;
 	env->texture[12].rect_s.y = 0;
 	env->texture[12].rect_s.w = 564;
 	env->texture[12].rect_s.h = 1168;
-	env->texture[12].rect_d.x = 780;
-	env->texture[12].rect_d.y = 430;
-	env->texture[12].rect_d.w = 30;
-	env->texture[12].rect_d.h = 85;
-	env->texture[12].angle = 240;
-	env->texture[12].center = 0;
+	env->texture[12].pos = 12;
 
 	env->texture[13].rect_s.x = 40;
 	env->texture[13].rect_s.y = 0;
 	env->texture[13].rect_s.w = 564;
 	env->texture[13].rect_s.h = 1168;
-	env->texture[13].rect_d.x = 940;
-	env->texture[13].rect_d.y = 460;
-	env->texture[13].rect_d.w = 30;
-	env->texture[13].rect_d.h = 85;
-	env->texture[13].angle = 270;
-	env->texture[13].center = 0;
+	env->texture[13].pos = 13;
 
 	env->texture[14].rect_s.x = 40;
 	env->texture[14].rect_s.y = 0;
 	env->texture[14].rect_s.w = 564;
 	env->texture[14].rect_s.h = 1168;
-	env->texture[14].rect_d.x = 940;
-	env->texture[14].rect_d.y = 540;
-	env->texture[14].rect_d.w = 30;
-	env->texture[14].rect_d.h = 85;
-	env->texture[14].angle = 285;
-	env->texture[14].center = 0;
+	env->texture[14].pos = 14;
 	return (NONE);
 }
 

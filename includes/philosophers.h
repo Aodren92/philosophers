@@ -16,6 +16,7 @@
 
 
 # define NBR_TEXTURES 15
+
 /*
 ** E_INIT ini error
 */
@@ -36,23 +37,27 @@ typedef enum	e_err
 }				t_err;
 
 
+typedef struct 	s_pos
+{
+	SDL_Rect			rect_d;
+	SDL_Point			*center;
+	double				angle;
+}				t_pos;
+
+
 typedef struct	s_texture
 {
 	SDL_Texture			*tex;
 	SDL_Rect			rect_s;
-	SDL_Rect			rect_d;
+	unsigned int		pos;
+	//SDL_Rect			*rect_d;
 
-
-	double				angle;
-	SDL_Point			*center;
-	SDL_RendererFlip	flip;
 }				t_texture;
 
 /*
 ** typedef struct s_sdl t_sdl
 ** manage SDL
 */
-
 
 typedef struct	s_system
 {
@@ -73,9 +78,10 @@ typedef struct	s_window
 */
 typedef struct	s_env
 {
-	t_system	sys;
-	t_window	win;
-	t_texture	texture[NBR_TEXTURES];
+	t_system		sys;
+	t_window		win;
+	t_pos			pos[29];
+	t_texture		texture[NBR_TEXTURES];
 }				t_env;
 
 /*
@@ -99,12 +105,20 @@ t_err	philo_init_rect(t_env *env);
 t_err	philo_init_baguette(t_env *env);
 /*
 ********************************************************************************
+**									DISPLAY
+********************************************************************************
+*/
+void	philo_display_philosophers(t_env *env);
+void	philo_display_baguettes(t_env *env);
+/*
+********************************************************************************
 **									SYSTEM
 ********************************************************************************
 */
 t_err	philo_main_loop(t_env *env);
 void	philo_sdl_exit(t_system *sys);
 void	philo_error(t_env *env, t_err err);
+void	philo_init_pos(t_pos *pos);
 t_err	philo_exit(t_env *env, t_err err);
 
 #endif
