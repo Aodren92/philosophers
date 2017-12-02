@@ -10,7 +10,7 @@ CFLAGS = -Wall -Werror -Wextra -O2
 
 OBJ_DIR_NAME = obj
 
-SRCS_NAME = main.c
+SRCS_NAME = main.c philo_init.c philo_error.c philo_exit.c philo_main_loop.c
 
 SRCS_PATH = ./srcs/
 
@@ -52,6 +52,8 @@ endif
 norminette:
 	@echo norme libft
 	norminette libft/**/*.[ch]
+	@echo norme includes
+	norminette ./includes/
 
 clean :
 	rm -rf $(OBJ_DIR_NAME)
