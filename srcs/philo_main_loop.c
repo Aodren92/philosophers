@@ -1,5 +1,7 @@
 #include "philosophers.h"
+#include <time.h>
 
+#define SECONDE 1 * 1000 * 1000
 t_err			philo_main_loop(t_env *e)
 {
 	char	run = 1;
@@ -35,16 +37,6 @@ t_err			philo_main_loop(t_env *e)
 			SDL_RenderClear(e->sys.renderer);
 			SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
 			philo_display_philosophers(e);
-			philo_display_baguettes(e);
-#if 0
-			int i = 1;
-			while (i < 15)
-			{
-				SDL_RenderCopy(e->sys.renderer, e->texture[i].tex,
-						&e->texture[i].rect_s, &e->texture[i].rect_d);
-				i++;
-			}
-#endif
 			SDL_RenderPresent(e->sys.renderer);
 #if 0
 			if (e->var.render == 1)

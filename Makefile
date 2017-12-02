@@ -12,7 +12,7 @@ OBJ_DIR_NAME = obj
 
 SRCS_NAME = main.c philo_init.c philo_error.c philo_exit.c philo_main_loop.c\
 			philo_error.c philo_init_pos.c philo_display_philosophers.c\
-			philo_display_baguettes.c
+			philo_display_baguettes.c philo_philosophers.c
 
 SRCS_PATH = ./srcs/
 
