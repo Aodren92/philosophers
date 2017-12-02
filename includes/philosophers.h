@@ -41,6 +41,7 @@ typedef struct	s_system
 {
 	SDL_Window		*win;
 	SDL_Renderer	*renderer;
+	SDL_Texture		*bitmaptex;
 	SDL_Event		ev;
 }				t_system;
 
@@ -73,6 +74,10 @@ void	philo_init_system(t_system *sys);
 ** Create window
 */
 t_err	philo_init_env(t_env *e);
+/*
+** Create Display
+*/
+t_err	philo_init_display(t_env *env);
 /*
 ********************************************************************************
 **									SYSTEM
