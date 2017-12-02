@@ -35,10 +35,16 @@ t_err			philo_main_loop(t_env *e)
 			SDL_RenderClear(e->sys.renderer);
 			SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
 			int i = 1;
-			while (i < 8)
+			while (i < 15)
 			{
+#if 0
 				SDL_RenderCopy(e->sys.renderer, e->texture[i].tex,
 						&e->texture[i].rect_s, &e->texture[i].rect_d);
+#endif
+				SDL_RenderCopyEx(e->sys.renderer, e->texture[i].tex,
+						&e->texture[i].rect_s, &e->texture[i].rect_d,
+						e->texture[i].angle, e->texture[i].center,
+						e->texture[i].flip);
 				i++;
 			}
 			SDL_RenderPresent(e->sys.renderer);

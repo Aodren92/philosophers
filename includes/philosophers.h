@@ -15,7 +15,7 @@
 # define WIN_NAME "PHILO"
 
 
-# define NBR_TEXTURES 8
+# define NBR_TEXTURES 15
 /*
 ** E_INIT ini error
 */
@@ -38,9 +38,14 @@ typedef enum	e_err
 
 typedef struct	s_texture
 {
-	SDL_Texture		*tex;
-	SDL_Rect		rect_s;
-	SDL_Rect		rect_d;
+	SDL_Texture			*tex;
+	SDL_Rect			rect_s;
+	SDL_Rect			rect_d;
+
+
+	double				angle;
+	SDL_Point			*center;
+	SDL_RendererFlip	flip;
 }				t_texture;
 
 /*
@@ -91,6 +96,7 @@ t_err	philo_init_env(t_env *e);
 */
 t_err	philo_init_display(t_env *env);
 t_err	philo_init_rect(t_env *env);
+t_err	philo_init_baguette(t_env *env);
 /*
 ********************************************************************************
 **									SYSTEM

@@ -17,6 +17,11 @@ int		main(void)
 		philo_error(&env, err);
 		return (err);
 	}
+	if ((err = philo_init_baguette(&env)))
+	{
+		philo_error(&env, err);
+		return (err);
+	}
 	if ((err = philo_init_display(&env)))
 	{
 		philo_error(&env, err);
