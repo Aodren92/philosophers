@@ -17,34 +17,35 @@ void	philo_init_pos(t_pos *pos)
 	pos[0].center = 0;
 	
 	//philosophers 
-	pos[1].rect_d.x = 380;
-	pos[1].rect_d.y = 290;
-	pos[1].rect_d.w = 70;
-	pos[1].rect_d.h = 75;
+	pos[1].rect_d.x = 140;
+	pos[1].rect_d.y = 440;
+	pos[1].rect_d.w = 80;
+	pos[1].rect_d.h = 85;
 	pos[1].angle = 0;
 	pos[1].center = 0;
 
-
-	pos[2].rect_d.x = 600;
-	pos[2].rect_d.y = 220;
+	pos[2].rect_d.x = 190;
+	pos[2].rect_d.y = 340;
 	pos[2].rect_d.w = 70;
 	pos[2].rect_d.h = 75;
 	pos[2].angle = 0;
 	pos[2].center = 0;
 
-	pos[3].rect_d.x = 190;
-	pos[3].rect_d.y = 340;
+	pos[3].rect_d.x = 380;
+	pos[3].rect_d.y = 290;
 	pos[3].rect_d.w = 70;
 	pos[3].rect_d.h = 75;
 	pos[3].angle = 0;
 	pos[3].center = 0;
 
-	pos[4].rect_d.x = 140;
-	pos[4].rect_d.y = 440;
-	pos[4].rect_d.w = 80;
-	pos[4].rect_d.h = 85;
+
+	pos[4].rect_d.x = 600;
+	pos[4].rect_d.y = 220;
+	pos[4].rect_d.w = 70;
+	pos[4].rect_d.h = 75;
 	pos[4].angle = 0;
 	pos[4].center = 0;
+
 
 	pos[5].rect_d.x = 850;
 	pos[5].rect_d.y = 285;
@@ -118,4 +119,55 @@ void	philo_init_pos(t_pos *pos)
 	pos[14].rect_d.h = 85;
 	pos[14].angle = 285;
 	pos[14].center = 0;
+	//baguttes pos right
+	//
+	pos[15].rect_d.x = 250;
+	pos[15].rect_d.y = 340;
+	pos[15].rect_d.w = 30;
+	pos[15].rect_d.h = 75;
+	pos[15].angle = 0;
+	pos[15].center = 0;
+
+
+	pos[16].rect_d.x = 440;
+	pos[16].rect_d.y = 290;
+	pos[16].rect_d.w = 30;
+	pos[16].rect_d.h = 75;
+	pos[16].angle = 0;
+	pos[16].center = 0;
+
+	pos[17].rect_d.x = 660;
+	pos[17].rect_d.y = 220;
+	pos[17].rect_d.w = 30;
+	pos[17].rect_d.h = 75;
+	pos[17].angle = 0;
+	pos[17].center = 0;
+
+	pos[18].rect_d.x = 920;
+	pos[18].rect_d.y = 285;
+	pos[18].rect_d.w = 30;
+	pos[18].rect_d.h = 75;
+	pos[18].angle = 0;
+	pos[18].center = 0;
+
+	pos[19].rect_d.x = 1140;
+	pos[19].rect_d.y = 330;
+	pos[19].rect_d.w = 30;
+	pos[19].rect_d.h = 75;
+	pos[19].angle = 0;
+	pos[19].center = 0;
+
+	pos[20].rect_d.x = 1210;
+	pos[20].rect_d.y = 450;
+	pos[20].rect_d.w = 30;
+	pos[20].rect_d.h = 85;
+	pos[20].angle = 0;
+	pos[20].center = 0;
+
+	pos[21].rect_d.x = 220;
+	pos[21].rect_d.y = 440;
+	pos[21].rect_d.w = 30;
+	pos[21].rect_d.h = 85;
+	pos[21].angle = 0;
+	pos[21].center = 0;
 }
