@@ -5,10 +5,10 @@
 # include <pthread.h>
 # include "libft.h"
 
-# define MAX_LIFE 60
-# define EAT_T 3
-# define THINK_T 5
-# define REST_T 2
+# define MAX_LIFE 5
+# define EAT_T 1
+# define THINK_T 1
+# define REST_T 1
 # define TIMEOUT 60 * 60 * 24
 
 # define DAMAGE_PER_S 1
@@ -102,7 +102,7 @@ typedef struct s_philosophers
 {
 	int						hp;
 	int						state;
-	int						nbr_state;
+	int						timeout;
 	char					name[124];
 	pthread_t				thread;
 	pthread_mutex_t		 	mutex_hp;
@@ -111,6 +111,8 @@ typedef struct s_philosophers
 	pthread_mutex_t		 	mutex_right;
 	pthread_mutex_t		 	mutex_left;
 	pthread_mutex_t		 	mutex_state;
+	pthread_mutex_t		 	mutex_eat;
+	pthread_mutex_t		 	mutex_timeout;
 	t_baguette				baguette;
 	struct s_philosophers	*right;
 	struct s_philosophers 	*left;
@@ -182,6 +184,7 @@ t_err	philo_join_thread(t_philosphers *philo);
 
 int		take_is_own_baguette(t_philosphers *philo);
 int		philo_take_right_baguette(t_philosphers *philo);
+int		philo_eat(t_philosphers *philo);
 /*
 ********************************************************************************
 **									DISPLAY

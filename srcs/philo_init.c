@@ -51,6 +51,8 @@ void	philo_init_philosophers(t_env *env)
 			= (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 		env->philosophers[i].mutex_b_left = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 		env->philosophers[i].mutex_state = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+		env->philosophers[i].mutex_timeout = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+		env->philosophers[i].timeout = REST_T;
 
 
 		if (i == 6)

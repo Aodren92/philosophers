@@ -7,25 +7,30 @@
 */
 
 
-static void	philo_change_state(t_philosphers *philo)
+#if 0
+static void	philo_timeout_state(t_philosphers *philo)
 {
 	if (!pthread_mutex_lock(&philo->mutex_state))
 	{
-		if (philo->state != STATE_PHILO_REST)
+		if (philo->timeout > 0)
+			philo->timeout--;
+		if (philo->timeout == 0 && philo->state != STATE_PHILO_REST)
 		{
-			philo->nbr_state -= 1;
-			if (philo->nbr_state == 0)
+			philo->baguette.pos = POS_BAGUETTE_NOR;				
+			if (philo->state == STATE_PHILO_EAT)
 			{
-				philo->baguette.pos = POS_BAGUETTE_NOR;				
-				if (philo->state == STATE_PHILO_EAT)
-					philo->right->baguette.pos = POS_BAGUETTE_NOR;
-				philo->state = STATE_PHILO_REST;
+				philo->right->baguette.pos = POS_BAGUETTE_NOR;
+				philo->hp = MAX_LIFE;
 			}
+			philo->timeout = REST_T;
+			philo->state = STATE_PHILO_REST;
 		}
 		pthread_mutex_unlock(&philo->mutex_state);
 	}
 }
+#endif
 
+#include <stdlib.h>
 void	*philo_routine_philosophers(void *arg)
 {
 	t_philosphers *philo;
@@ -34,16 +39,16 @@ void	*philo_routine_philosophers(void *arg)
 	while (philo->hp > 0)
 	{
 		(void)philo->hp;	
-		if (philo->hp < 55 && philo->state == STATE_PHILO_REST)
+		if (philo->state == STATE_PHILO_REST && philo->timeout <= 0)
 			take_is_own_baguette(philo);
-		/*
-		else if (philo->state == STATE_PHILO_THINK)
+		else if (philo->state == STATE_PHILO_THINK && philo->timeout <= 0)
 			philo_take_right_baguette(philo);
-			*/
-		philo_change_state(philo);
-		philo->hp--;
-		usleep(SECONDE);
+		else if (philo->state == STATE_PHILO_EAT && philo->timeout <= 0)
+			philo_eat(philo);
+//		usleep(SECONDE);
+	//	philo_timeout_state(philo);
 	}
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -62,13 +67,11 @@ t_err	philo_start_routine(t_env *env)
 	return (NONE);
 }
 
-
 t_err	philo_join_thread(t_philosphers *philo)
 {
 	unsigned int	i;
 
 	i = 0;
-
 	while (i < 7)
 	{
 		philo[i].hp = -1;
