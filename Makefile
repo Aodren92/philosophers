@@ -39,7 +39,7 @@ libft:
 
 $(NAME):$(OBJ_SRCS)
 	make -C $(LIBFT_PATH)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) -L$(LIBFT_PATH) -L$(LIB_BREW_PATH)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) -L$(LIBFT_PATH) -L$(LIB_BREW_PATH) -lpthread -D_REENTRANT
 
 $(OBJ_DIR_NAME)/%.o : $(SRCS_PATH)/%.c
 	mkdir -p $(OBJ_DIR_NAME)
@@ -50,7 +50,7 @@ ifeq ($(OS_NAME),Darwin)
 	brew install -y SDL2
 endif
 ifeq ($(OS_NAME),Linux)
-	sudo apt-get install -y SDL2
+	sudo apt-get install -y libsdl2-2.0-0 libsdl2-dev 
 endif
 
 norminette:
