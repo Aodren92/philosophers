@@ -113,8 +113,10 @@ t_err	philo_init_display(t_env *env)
 		bitmapSurface[3])))
 	SDL_FreeSurface(bitmapSurface[3]);
 
-	if (!(bitmapSurface[4] = SDL_LoadBMP("./res/poutin.bmp")))
+	if (!(bitmapSurface[4] = SDL_LoadBMP("./res/syler.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[4],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[4]->format, 0, 255, 0));
 	if (!(env->texture[4].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[4])))
 	SDL_FreeSurface(bitmapSurface[4]);
@@ -163,10 +165,10 @@ t_err	philo_init_rect(t_env *env)
 	env->texture[3].rect_s.h = 1312;
 	env->texture[3].pos = 3;
 
-	env->texture[4].rect_s.x = 0;
+	env->texture[4].rect_s.x = 250;
 	env->texture[4].rect_s.y = 0;
-	env->texture[4].rect_s.w = 150;
-	env->texture[4].rect_s.h = 160;
+	env->texture[4].rect_s.w = 865;
+	env->texture[4].rect_s.h = 1540;
 	env->texture[4].pos = 4;
 
 
