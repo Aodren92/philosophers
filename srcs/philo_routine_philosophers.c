@@ -12,9 +12,11 @@ void	*philo_routine_philosophers(void *arg)
 	while (philo->hp > 0)
 	{
 		(void)arg;
+#if 1
 		printf("Hey missis , my name is %s, and to my right i see %s,\
-				tomy left is %s\n", philo->name, philo->right->name, 
-				philo->left->name);
+				tomy left is %s and i have %d HP\n", philo->name, philo->right->name, 
+				philo->left->name, philo->hp);
+#endif
 	}
 	return (0);
 }

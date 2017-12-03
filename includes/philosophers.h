@@ -5,7 +5,7 @@
 # include <pthread.h>
 # include "libft.h"
 
-# define MAX_LIFE 100
+# define MAX_LIFE 60
 # define EAT_T 3
 # define THINK_T 5
 # define REST_T 2

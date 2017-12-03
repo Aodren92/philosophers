@@ -1,7 +1,7 @@
 #include "philosophers.h"
 #include <time.h>
 
-#define SECONDE 1 * 1000 * 1000
+#define SECONDE 1000000
 t_err			philo_main_loop(t_env *e)
 {
 	char	run = 1;
@@ -15,41 +15,27 @@ t_err			philo_main_loop(t_env *e)
 		{
 			if (e->sys.ev.type == SDL_QUIT)
 			{
+				//\XXX KILL THREADS
 				return (philo_exit(e, NONE));
-			}
-			else if (e->sys.ev.type == SDL_WINDOWEVENT)
-			{
-#if 0
-				if (e->ev.window.event == SDL_WINDOWEVENT_RESIZED)
-					if ((err = philo_resize_window(&(e->var), e->win,
-									&(e->fractal), &(e->ev))) != NONE)
-					{
-						return philo_exit(e, err);
-					}
-#endif
 			}
 			else if (e->sys.ev.type == SDL_KEYDOWN)
 			{
 				if (e->sys.ev.key.keysym.sym == SDLK_ESCAPE)
 				{
-					puts("here");
+					//\XXX KILL THREADS
 					return (philo_exit(e, NONE));
 				}
 			}
-			SDL_RenderClear(e->sys.renderer);
-			SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
-			philo_display_philosophers(e);
-			philo_display_baguettes(e);
-			SDL_RenderPresent(e->sys.renderer);
-#if 0
-			if (e->var.render == 1)
-				if ((err = philo_draw_fractal(e)) != NONE)
-				{
-					philo_exit(e, &run, err);
-					break;
-				}
-#endif
 		}
+		SDL_RenderClear(e->sys.renderer);
+		SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
+		philo_display_philosophers(e);
+		philo_display_baguettes(e);
+		SDL_RenderPresent(e->sys.renderer);
+		usleep(SECONDE);
+		philo_take_damage(e->philosophers);
+		if (philo_is_dead(e->philosophers) == DEAD)
+			break ;
 	}
 	return (err);
 }

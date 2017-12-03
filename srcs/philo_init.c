@@ -15,7 +15,8 @@ t_err	philo_init_env(t_env *e)
 			SDL_WINDOWPOS_UNDEFINED, e->win.width, e->win.height,
 			0)) == NULL)
 		return (E_WINDOW);
-	if ((e->sys.renderer = SDL_CreateRenderer(e->sys.win, -1, SDL_RENDERER_ACCELERATED)) == NULL)
+	if ((e->sys.renderer = SDL_CreateRenderer(e->sys.win, -1,
+					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) == NULL)
 		return (E_RENDERER);
 	return (NONE);
 }
@@ -40,7 +41,7 @@ void	philo_init_philosophers(t_env *env)
 	while (i < 7)
 	{
 		env->philosophers[i].hp = MAX_LIFE;
-		env->philosophers[i].state = STATE_REST;
+		env->philosophers[i].state = STATE_PHILO_REST;
 		env->philosophers[i].baguette.pos = POS_BAGUETTE_NOR;
 		env->philosophers[i].baguette.mutex = 0;
 		if (i == 6)
