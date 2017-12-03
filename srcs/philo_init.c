@@ -21,19 +21,39 @@ t_err	philo_init_env(t_env *e)
 }
 
 
+static void	philo_init_name(t_philosphers *philo)
+{
+	ft_strcpy(philo[0].name, "name 0");
+	ft_strcpy(philo[1].name, "name 1");
+	ft_strcpy(philo[2].name, "name 2");
+	ft_strcpy(philo[3].name, "name 3");
+	ft_strcpy(philo[4].name, "name 4");
+	ft_strcpy(philo[5].name, "name 5");
+	ft_strcpy(philo[6].name, "name 6");
+}
+
 void	philo_init_philosophers(t_env *env)
 {
 	unsigned int i;
 	i = 0;
+
 	while (i < 7)
 	{
 		env->philosophers[i].hp = MAX_LIFE;
 		env->philosophers[i].state = STATE_REST;
 		env->philosophers[i].baguette.pos = POS_BAGUETTE_NOR;
 		env->philosophers[i].baguette.mutex = 0;
+		if (i == 6)
+			env->philosophers[i].left = &env->philosophers[0];
+		else
+			env->philosophers[i].left = &env->philosophers[i + 1];
+		if (i > 0)
+			env->philosophers[i].right = &env->philosophers[i - 1];
+		else
+			env->philosophers[i].right = &env->philosophers[6];
 		++i;
 	}
-
+	philo_init_name(env->philosophers);
 }
 
 

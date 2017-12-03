@@ -2,6 +2,7 @@
 # define PHILOSOPHERS_H
 
 # include <SDL2/SDL.h>
+# include <pthread.h>
 # include "libft.h"
 
 # define MAX_LIFE 100
@@ -32,6 +33,7 @@
 /*
 ** E_INIT ini error
 */
+
 typedef enum	e_err
 {
 	NONE = 0,
@@ -46,14 +48,27 @@ typedef enum	e_err
 	E_TTF_OPEN,
 	E_TTF_SIZE,
 	E_TTF_SURF,
+	E_THREAD_CREATE,
 }				t_err;
 
 
+/*
+** we can only use
+** pthread_create.
+** pthread_detach.
+** pthread_join.
+** pthread_mutex_init.
+** pthread_mutex_destroy.
+** pthread_mutex_trylock.
+** pthread_mutex_lock.
+** pthread_mutex_unlock.
+*/
+
 typedef struct 	s_pos
 {
-	SDL_Rect			rect_d;
-	SDL_Point			*center;
-	double				angle;
+	SDL_Rect	rect_d;
+	SDL_Point	*center;
+	double		angle;
 }				t_pos;
 
 
@@ -74,9 +89,13 @@ typedef struct s_baguette
 
 typedef struct s_philosophers
 {
-	int			hp;
-	int			state;
-	t_baguette	baguette;
+	int						hp;
+	int						state;
+	t_baguette				baguette;
+	char					name[124];
+	pthread_t				thread;
+	struct s_philosophers	*right;
+	struct s_philosophers 	*left;
 }				t_philosphers;
 
 /*
@@ -131,6 +150,14 @@ t_err	philo_init_rect(t_env *env);
 t_err	philo_init_baguette(t_env *env);
 
 void	philo_init_philosophers(t_env *env);
+
+
+/*
+********************************************************************************
+**									THREADS
+********************************************************************************
+*/
+t_err	philo_start_routine(t_env *env);
 /*
 ********************************************************************************
 **									DISPLAY

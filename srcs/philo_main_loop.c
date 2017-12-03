@@ -8,6 +8,7 @@ t_err			philo_main_loop(t_env *e)
 	t_err	err = NONE;
 
 	(void)err;
+	philo_start_routine(e);
 	while (run)
 	{
 		while (SDL_PollEvent(&e->sys.ev))

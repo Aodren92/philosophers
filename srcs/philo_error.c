@@ -10,4 +10,6 @@ void	philo_error(t_env *env, t_err error)
 		ft_putstr_fd("Error SDL init\n", 2);
 	if (error == E_TEXTURE)
 		ft_putstr_fd("Error =, couldn't find files\n", 2);
+	if (error == E_THREAD_CREATE)
+		ft_putstr_fd("Error =, error create thread\n", 2);
 }
