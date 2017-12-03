@@ -6,15 +6,25 @@
 
 void	philo_display_baguettes(t_env *e)
 {
-	unsigned int i;
+	unsigned int	i;
+	unsigned int 	pos;
+	t_philosphers *philo;
 
 	i = 8;
+
+	philo = e->philosophers;
 	while (i < 15)
 	{
+		pos = philo[i - 8].baguette.pos;
 		SDL_RenderCopyEx(e->sys.renderer, e->texture[i].tex,
-				&e->texture[i].rect_s, &e->pos[i + DEBUG_POS_RIGHT].rect_d,
-				e->pos[i + DEBUG_POS_RIGHT].angle, e->pos[i + DEBUG_POS_RIGHT].center,
+				&e->texture[i].rect_s, &e->pos[i + pos].rect_d,
+				e->pos[i + pos].angle, e->pos[i + pos].center, 0);
+#if 0
+		SDL_RenderCopyEx(e->sys.renderer, e->texture[i].tex,
+				&e->texture[i].rect_s, &e->pos[i].rect_d,
+				e->pos[i].angle, e->pos[i].center,
 				0);
+#endif
 		++i;
 	}
 }

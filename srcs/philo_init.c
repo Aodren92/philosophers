@@ -226,6 +226,8 @@ t_err	philo_init_baguette(t_env *env)
 
 	if (!(bitmapSurface[0] = SDL_LoadBMP("./res/baguette_rouge.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[0],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[0]->format, 255, 255, 255));
 	if (!(env->texture[8].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[0])))
 
