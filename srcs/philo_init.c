@@ -82,22 +82,28 @@ t_err	philo_init_display(t_env *env)
 		return (E_INIT);
 
 	SDL_FreeSurface(bitmapSurface[0]);
-	if (!(bitmapSurface[1] = SDL_LoadBMP("./res/poutin.bmp")))
+	if (!(bitmapSurface[1] = SDL_LoadBMP("./res/trump.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[1],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[1]->format, 0, 255, 0));
 	if (!(env->texture[1].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[1])))
 
 
 	SDL_FreeSurface(bitmapSurface[1]);
 
-	if (!(bitmapSurface[2] = SDL_LoadBMP("./res/poutin.bmp")))
+	if (!(bitmapSurface[2] = SDL_LoadBMP("./res/poutin2.bmp")))
 		return (E_TEXTURE);
+		#if 1
+	SDL_SetColorKey(bitmapSurface[2],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[2]->format, 0, 255, 0));
+	#endif
 	if (!(env->texture[2].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[2])))
 
 	SDL_FreeSurface(bitmapSurface[2]);
 
-	if (!(bitmapSurface[3] = SDL_LoadBMP("./res/poutin2.bmp")))
+	if (!(bitmapSurface[3] = SDL_LoadBMP("./res/ben_laden.bmp")))
 		return (E_TEXTURE);
 
 	SDL_SetColorKey(bitmapSurface[3],
@@ -139,8 +145,8 @@ t_err	philo_init_rect(t_env *env)
 	//philosophers
 	env->texture[1].rect_s.x = 0;
 	env->texture[1].rect_s.y = 0;
-	env->texture[1].rect_s.w = 150;
-	env->texture[1].rect_s.h = 150;
+	env->texture[1].rect_s.w = 950;
+	env->texture[1].rect_s.h = 346;
 	env->texture[1].pos = 1;
 
 
@@ -153,8 +159,8 @@ t_err	philo_init_rect(t_env *env)
 
 	env->texture[3].rect_s.x = 0;
 	env->texture[3].rect_s.y = 0;
-	env->texture[3].rect_s.w = 150;
-	env->texture[3].rect_s.h = 150;
+	env->texture[3].rect_s.w = 2000;
+	env->texture[3].rect_s.h = 1312;
 	env->texture[3].pos = 3;
 
 	env->texture[4].rect_s.x = 0;
@@ -246,12 +252,16 @@ t_err	philo_init_baguette(t_env *env)
 
 	if (!(bitmapSurface[1] = SDL_LoadBMP("./res/baguette_rouge.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[1],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[1]->format, 255, 255, 255));
 	if (!(env->texture[9].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[1])))
 	SDL_FreeSurface(bitmapSurface[1]);
 
 	if (!(bitmapSurface[2] = SDL_LoadBMP("./res/baguette_rouge.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[2],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[2]->format, 255, 255, 255));
 	if (!(env->texture[10].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[2])))
 
@@ -259,24 +269,32 @@ t_err	philo_init_baguette(t_env *env)
 
 	if (!(bitmapSurface[3] = SDL_LoadBMP("./res/baguette_rouge.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[3],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[3]->format, 255, 255, 255));
 	if (!(env->texture[11].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[3])))
 	SDL_FreeSurface(bitmapSurface[3]);
 
 	if (!(bitmapSurface[4] = SDL_LoadBMP("./res/baguette_rouge.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[4],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[4]->format, 255, 255, 255));
 	if (!(env->texture[12].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[4])))
 	SDL_FreeSurface(bitmapSurface[4]);
 
 	if (!(bitmapSurface[5] = SDL_LoadBMP("./res/baguette_rouge.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[5],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[5]->format, 255, 255, 255));
 	if (!(env->texture[13].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[5])))
 	SDL_FreeSurface(bitmapSurface[5]);
 
 	if (!(bitmapSurface[6] = SDL_LoadBMP("./res/baguette_rouge.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[6],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[6]->format, 255, 255, 255));
 	if (!(env->texture[14].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[6])))
 	SDL_FreeSurface(bitmapSurface[6]);

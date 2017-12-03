@@ -17,10 +17,10 @@ void	philo_init_pos(t_pos *pos)
 	pos[0].center = 0;
 	
 	//philosophers 
-	pos[1].rect_d.x = 140;
-	pos[1].rect_d.y = 440;
-	pos[1].rect_d.w = 80;
-	pos[1].rect_d.h = 85;
+	pos[1].rect_d.x = 80;
+	pos[1].rect_d.y = 430;
+	pos[1].rect_d.w = 320;
+	pos[1].rect_d.h = 110;
 	pos[1].angle = 0;
 	pos[1].center = 0;
 
@@ -31,10 +31,10 @@ void	philo_init_pos(t_pos *pos)
 	pos[2].angle = 0;
 	pos[2].center = 0;
 
-	pos[3].rect_d.x = 380;
-	pos[3].rect_d.y = 290;
-	pos[3].rect_d.w = 70;
-	pos[3].rect_d.h = 75;
+	pos[3].rect_d.x = 180;
+	pos[3].rect_d.y = 220;
+	pos[3].rect_d.w = 450;
+	pos[3].rect_d.h = 345;
 	pos[3].angle = 0;
 	pos[3].center = 0;
 
