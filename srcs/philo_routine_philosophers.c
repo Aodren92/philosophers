@@ -16,11 +16,7 @@ void	*philo_routine_philosophers(void *arg)
 		(void)philo->hp;	
 		if (philo->hp < 55)
 		{
-//			pthread_mutex_lock (&mutex);
-
-//			pthread_mutex_unlock (&mutex);
-			ft_putstr("Something...\n");
-			philo->baguette.pos = POS_BAGUETTE_LEFT;
+			take_is_own_baguette(philo);
 		}
 		philo->hp--;
 		usleep(SECONDE);
