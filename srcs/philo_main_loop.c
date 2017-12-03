@@ -32,6 +32,7 @@ t_err			philo_main_loop(t_env *e)
 			{
 				if (e->sys.ev.key.keysym.sym == SDLK_ESCAPE)
 				{
+					puts("here");
 					return (philo_exit(e, NONE));
 				}
 			}

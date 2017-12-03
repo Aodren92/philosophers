@@ -23,13 +23,23 @@
 # define POS_BAGUETTE_LEFT 14
 
 
+typedef enum	e_state_philo
+{
+	STATE_PHILO_REST,
+	STATE_PHILO_THINK,
+	STATE_PHILO_EAT
+}				t_state_philo;
+
+#if 0
 # define STATE_REST 0
 # define STATE_THINK 1
 # define STATE_EAT 2
-
+#endif
 # define BAGUETTE_DISPO 1
 # define BAGUETTE_INDISPO 0
 
+# define ALIVE 1
+# define DEAD 0
 /*
 ** E_INIT ini error
 */
@@ -49,6 +59,7 @@ typedef enum	e_err
 	E_TTF_SIZE,
 	E_TTF_SURF,
 	E_THREAD_CREATE,
+	E_THREAD_JOIN,
 }				t_err;
 
 
@@ -154,10 +165,13 @@ void	philo_init_philosophers(t_env *env);
 
 /*
 ********************************************************************************
-**									THREADS
+**									PHILOSOPHERS
 ********************************************************************************
 */
 t_err	philo_start_routine(t_env *env);
+void	philo_take_damage(t_philosphers *philo);
+int		philo_is_dead(t_philosphers *philo);
+t_err	philo_join_thread(t_philosphers *philo);
 /*
 ********************************************************************************
 **									DISPLAY

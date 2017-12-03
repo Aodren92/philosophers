@@ -32,5 +32,6 @@ int		main(void)
 	philo_init_pos(env.pos);
 	if (!philo_main_loop(&env))
 		SDL_Quit(); 
+	philo_join_thread(env.philosophers);
 	return (NONE);
 }
