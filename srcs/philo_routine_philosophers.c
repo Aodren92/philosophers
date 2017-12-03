@@ -5,7 +5,27 @@
 /*
 ** routine for each philo
 */
-//pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+
+static void	philo_change_state(t_philosphers *philo)
+{
+	if (!pthread_mutex_lock(&philo->mutex_state))
+	{
+		if (philo->state != STATE_PHILO_REST)
+		{
+			philo->nbr_state -= 1;
+			if (philo->nbr_state == 0)
+			{
+				philo->baguette.pos = POS_BAGUETTE_NOR;				
+				if (philo->state == STATE_PHILO_EAT)
+					philo->right->baguette.pos = POS_BAGUETTE_NOR;
+				philo->state = STATE_PHILO_REST;
+			}
+		}
+		pthread_mutex_unlock(&philo->mutex_state);
+	}
+}
+
 void	*philo_routine_philosophers(void *arg)
 {
 	t_philosphers *philo;
@@ -15,9 +35,12 @@ void	*philo_routine_philosophers(void *arg)
 	{
 		(void)philo->hp;	
 		if (philo->hp < 55 && philo->state == STATE_PHILO_REST)
-		{
 			take_is_own_baguette(philo);
-		}
+		/*
+		else if (philo->state == STATE_PHILO_THINK)
+			philo_take_right_baguette(philo);
+			*/
+		philo_change_state(philo);
 		philo->hp--;
 		usleep(SECONDE);
 	}

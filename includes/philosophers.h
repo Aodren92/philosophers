@@ -102,14 +102,16 @@ typedef struct s_philosophers
 {
 	int						hp;
 	int						state;
+	int						nbr_state;
 	char					name[124];
 	pthread_t				thread;
 	pthread_mutex_t		 	mutex_hp;
+	pthread_mutex_t		 	mutex_b_right;
+	pthread_mutex_t		 	mutex_b_left;
+	pthread_mutex_t		 	mutex_right;
+	pthread_mutex_t		 	mutex_left;
+	pthread_mutex_t		 	mutex_state;
 	t_baguette				baguette;
-#if 0
-	int						b_right; // 1 , 0
-	int						b_left;// 1 , 0
-#endif
 	struct s_philosophers	*right;
 	struct s_philosophers 	*left;
 }				t_philosphers;
@@ -179,6 +181,7 @@ int		philo_is_dead(t_philosphers *philo);
 t_err	philo_join_thread(t_philosphers *philo);
 
 int		take_is_own_baguette(t_philosphers *philo);
+int		philo_take_right_baguette(t_philosphers *philo);
 /*
 ********************************************************************************
 **									DISPLAY
