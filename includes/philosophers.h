@@ -15,7 +15,6 @@
 
 # define WIN_NAME "PHILO"
 
-
 # define NBR_TEXTURES 15
 
 # define POS_BAGUETTE_NOR 0

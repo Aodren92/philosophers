@@ -43,7 +43,6 @@ void	philo_init_philosophers(t_env *env)
 		env->philosophers[i].hp = MAX_LIFE;
 		env->philosophers[i].state = STATE_PHILO_REST;
 		env->philosophers[i].baguette.pos = POS_BAGUETTE_NOR;
-		env->philosophers[i].baguette.mutex = 0;
 		if (i == 6)
 			env->philosophers[i].left = &env->philosophers[0];
 		else

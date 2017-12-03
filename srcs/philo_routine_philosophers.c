@@ -1,9 +1,11 @@
 #include "philosophers.h"
 #include <time.h>
 #include <stdio.h>
+#define SECONDE 1000000
 /*
 ** routine for each philo
 */
+//pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 void	*philo_routine_philosophers(void *arg)
 {
 	t_philosphers *philo;
@@ -11,12 +13,17 @@ void	*philo_routine_philosophers(void *arg)
 	philo = (t_philosphers *)arg;
 	while (philo->hp > 0)
 	{
-		
-#if 0
-		printf("Hey missis , my name is %s, and to my right i see %s,\
-				tomy left is %s and i have %d HP\n", philo->name, philo->right->name, 
-				philo->left->name, philo->hp);
-#endif
+		(void)philo->hp;	
+		if (philo->hp < 55)
+		{
+//			pthread_mutex_lock (&mutex);
+
+//			pthread_mutex_unlock (&mutex);
+			ft_putstr("Something...\n");
+			philo->baguette.pos = POS_BAGUETTE_LEFT;
+		}
+		philo->hp--;
+		usleep(SECONDE);
 	}
 	return (0);
 }
