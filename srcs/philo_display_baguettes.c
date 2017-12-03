@@ -19,12 +19,6 @@ void	philo_display_baguettes(t_env *e)
 		SDL_RenderCopyEx(e->sys.renderer, e->texture[i].tex,
 				&e->texture[i].rect_s, &e->pos[i + pos].rect_d,
 				e->pos[i + pos].angle, e->pos[i + pos].center, 0);
-#if 0
-		SDL_RenderCopyEx(e->sys.renderer, e->texture[i].tex,
-				&e->texture[i].rect_s, &e->pos[i].rect_d,
-				e->pos[i].angle, e->pos[i].center,
-				0);
-#endif
 		++i;
 	}
 }

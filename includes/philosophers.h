@@ -102,9 +102,13 @@ typedef struct s_philosophers
 {
 	int						hp;
 	int						state;
-	t_baguette				baguette;
 	char					name[124];
 	pthread_t				thread;
+	t_baguette				baguette;
+#if 0
+	int						b_right; // 1 , 0
+	int						b_left;// 1 , 0
+#endif
 	struct s_philosophers	*right;
 	struct s_philosophers 	*left;
 }				t_philosphers;
@@ -190,4 +194,10 @@ void	philo_error(t_env *env, t_err err);
 void	philo_init_pos(t_pos *pos);
 t_err	philo_exit(t_env *env, t_err err);
 
+/*
+********************************************************************************
+**									DEBUG
+********************************************************************************
+*/
+void		philo_display_philo_console(t_philosphers *philo);
 #endif

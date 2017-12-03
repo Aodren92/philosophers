@@ -34,6 +34,7 @@ t_err			philo_main_loop(t_env *e)
 		SDL_RenderPresent(e->sys.renderer);
 		usleep(SECONDE);
 		philo_take_damage(e->philosophers);
+		philo_display_philo_console(e->philosophers);
 		if (philo_is_dead(e->philosophers) == DEAD)
 			break ;
 	}
