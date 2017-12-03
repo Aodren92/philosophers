@@ -34,15 +34,13 @@ int		get_state_right_baguette(t_env *env, int philo)
 		return (env->philosophers[philo - 1].baguette.state);
 }
 
-
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 int		take_is_own_baguette(t_philosphers *philo)
 {
-	if (pthread_mutex_trylock(&mutex))
+	if (pthread_mutex_trylock(&philo->mutex_hp))
 	{
 		philo->state = STATE_PHILO_THINK;
 		philo->baguette.pos = POS_BAGUETTE_LEFT;
-		pthread_mutex_unlock(&mutex);
+		pthread_mutex_unlock(&philo->mutex_hp);
 		return (1);
 	}
 	return (0);

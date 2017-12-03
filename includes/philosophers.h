@@ -104,6 +104,7 @@ typedef struct s_philosophers
 	int						state;
 	char					name[124];
 	pthread_t				thread;
+	pthread_mutex_t		 	mutex_hp;
 	t_baguette				baguette;
 #if 0
 	int						b_right; // 1 , 0

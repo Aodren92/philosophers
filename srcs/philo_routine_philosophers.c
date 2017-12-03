@@ -14,7 +14,7 @@ void	*philo_routine_philosophers(void *arg)
 	while (philo->hp > 0)
 	{
 		(void)philo->hp;	
-		if (philo->hp < 55)
+		if (philo->hp < 55 && philo->state == STATE_PHILO_REST)
 		{
 			take_is_own_baguette(philo);
 		}
