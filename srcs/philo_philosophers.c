@@ -37,5 +37,7 @@ int		get_state_right_baguette(t_env *env, int philo)
 int		take_right_baguette(t_env *env, int philo)
 {
 
+	(void)env, (void)philo;
+	return 0;
 
 }

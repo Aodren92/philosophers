@@ -37,6 +37,7 @@ t_err			philo_main_loop(t_env *e)
 			SDL_RenderClear(e->sys.renderer);
 			SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
 			philo_display_philosophers(e);
+			philo_display_baguettes(e);
 			SDL_RenderPresent(e->sys.renderer);
 #if 0
 			if (e->var.render == 1)

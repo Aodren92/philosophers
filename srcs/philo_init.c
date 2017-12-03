@@ -65,8 +65,12 @@ t_err	philo_init_display(t_env *env)
 
 	SDL_FreeSurface(bitmapSurface[2]);
 
-	if (!(bitmapSurface[3] = SDL_LoadBMP("./res/poutin.bmp")))
+	if (!(bitmapSurface[3] = SDL_LoadBMP("./res/poutin2.bmp")))
 		return (E_TEXTURE);
+
+	SDL_SetColorKey(bitmapSurface[3],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[3]->format, 0, 255, 0));
+
 	if (!(env->texture[3].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[3])))
 	SDL_FreeSurface(bitmapSurface[3]);

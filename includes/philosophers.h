@@ -25,6 +25,10 @@
 # define STATE_REST 0
 # define STATE_THINK 1
 # define STATE_EAT 2
+
+# define BAGUETTE_DISPO 1
+# define BAGUETTE_INDISPO 0
+
 /*
 ** E_INIT ini error
 */
@@ -64,6 +68,7 @@ typedef struct	s_texture
 typedef struct s_baguette
 {
 	int			pos; // 0 normal ; 7  right; 14 left
+	int			state;
 	int			mutex;
 }				t_baguette;
 
