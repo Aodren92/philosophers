@@ -40,10 +40,9 @@ t_err			philo_main_loop(t_env *e)
 		}
 		if (philo_is_dead(e->philosophers) == DEAD)
 			break ;
+		philo_renderer(e);
 		if (!start++)
 			philo_start_routine(e);
-		if (start)
-			philo_renderer(e);
 	}
 	return (err);
 }

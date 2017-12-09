@@ -5,10 +5,10 @@
 # include <pthread.h>
 # include "libft.h"
 
-# define MAX_LIFE 5000
-# define EAT_T 5
-# define THINK_T 5
-# define REST_T 5
+# define MAX_LIFE 5
+# define EAT_T 1
+# define THINK_T 1
+# define REST_T 1
 # define TIMEOUT 60 * 60 * 24
 # define DAMAGE_PER_S 1
 # define WIN_NAME "PHILO"

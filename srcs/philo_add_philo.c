@@ -23,18 +23,18 @@ t_err			philo_add_philos(t_env *env)
 	philos = env->philosophers;
 	ret = NONE;
 	ret |= philo_add_philo(env, "./res/trump.bmp", 1);
-	ft_strcpy(philos[1].name, "Trump");
+	ft_strcpy(philos[0].name, "Trump");
 	ret |= philo_add_philo(env, "./res/poutin2.bmp", 2);
 	ft_strcpy(philos[1].name, "Poutin");
 	ret |= philo_add_philo(env, "./res/ben_laden.bmp", 3);
-	ft_strcpy(philos[1].name, "Ben Laden");
+	ft_strcpy(philos[2].name, "Ben Laden");
 	ret |= philo_add_philo(env, "./res/syler.bmp", 4);
-	ft_strcpy(philos[1].name, "Stalone");
+	ft_strcpy(philos[3].name, "Stalone");
 	ret |= philo_add_philo(env, "./res/kim.bmp", 5);
-	ft_strcpy(philos[1].name, "Kim");
+	ft_strcpy(philos[4].name, "Kim");
 	ret |= philo_add_philo(env, "./res/bush.bmp", 6);
-	ft_strcpy(philos[1].name, "Bush");
+	ft_strcpy(philos[5].name, "Bush");
 	ret |= philo_add_philo(env, "./res/sarko.bmp", 7);
-	ft_strcpy(philos[1].name, "Sarko");
+	ft_strcpy(philos[6].name, "Sarko");
 	return (ret);
 }
