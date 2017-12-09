@@ -129,14 +129,18 @@ t_err	philo_init_display(t_env *env)
 		bitmapSurface[5])))
 	SDL_FreeSurface(bitmapSurface[5]);
 
-	if (!(bitmapSurface[6] = SDL_LoadBMP("./res/poutin.bmp")))
+	if (!(bitmapSurface[6] = SDL_LoadBMP("./res/bush.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[6],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[6]->format, 0, 255, 0));
 	if (!(env->texture[6].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[6])))
 	SDL_FreeSurface(bitmapSurface[6]);
 
-	if (!(bitmapSurface[7] = SDL_LoadBMP("./res/poutin.bmp")))
+	if (!(bitmapSurface[7] = SDL_LoadBMP("./res/sarko.bmp")))
 		return (E_TEXTURE);
+	SDL_SetColorKey(bitmapSurface[7],
+			SDL_TRUE, SDL_MapRGB(bitmapSurface[7]->format, 0, 255, 0));
 	if (!(env->texture[7].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 		bitmapSurface[7])))
 	SDL_FreeSurface(bitmapSurface[7]);
@@ -182,14 +186,14 @@ t_err	philo_init_rect(t_env *env)
 
 	env->texture[6].rect_s.x = 0;
 	env->texture[6].rect_s.y = 0;
-	env->texture[6].rect_s.w = 150;
-	env->texture[6].rect_s.h = 150;
+	env->texture[6].rect_s.w = 460;
+	env->texture[6].rect_s.h = 280;
 	env->texture[5].pos = 6;
 
 	env->texture[7].rect_s.x = 0;
 	env->texture[7].rect_s.y = 0;
-	env->texture[7].rect_s.w = 150;
-	env->texture[7].rect_s.h = 150;
+	env->texture[7].rect_s.w = 526;
+	env->texture[7].rect_s.h = 240;
 	env->texture[5].pos = 7;
 
 		// baguettes
