@@ -17,7 +17,7 @@ int		main(void)
 		philo_error(&env, err);
 		return (err);
 	}
-	if ((err = philo_init_baguette(&env)))
+	if ((err = philo_add_baguettes(&env)))
 	{
 		philo_error(&env, err);
 		return (err);
