@@ -10,17 +10,22 @@
 # define THINK_T 1
 # define REST_T 1
 # define TIMEOUT 60 * 60 * 24
-
 # define DAMAGE_PER_S 1
-
 # define WIN_NAME "PHILO"
-
 # define NBR_TEXTURES 15
+
+/*
+** Position baguette
+*/
 
 # define POS_BAGUETTE_NOR 0
 # define POS_BAGUETTE_RIGHT 7
 # define POS_BAGUETTE_LEFT 14
 
+# define BAGUETTE_DISPO 1
+# define BAGUETTE_INDISPO 0
+# define ALIVE 1
+# define DEAD 0
 
 typedef enum	e_state_philo
 {
@@ -29,16 +34,6 @@ typedef enum	e_state_philo
 	STATE_PHILO_EAT
 }				t_state_philo;
 
-#if 0
-# define STATE_REST 0
-# define STATE_THINK 1
-# define STATE_EAT 2
-#endif
-# define BAGUETTE_DISPO 1
-# define BAGUETTE_INDISPO 0
-
-# define ALIVE 1
-# define DEAD 0
 /*
 ** E_INIT ini error
 */
@@ -61,7 +56,6 @@ typedef enum	e_err
 	E_THREAD_JOIN,
 }				t_err;
 
-
 /*
 ** we can only use
 ** pthread_create.
@@ -74,13 +68,12 @@ typedef enum	e_err
 ** pthread_mutex_unlock.
 */
 
-typedef struct 	s_pos
+typedef struct	s_pos
 {
 	SDL_Rect	rect_d;
 	SDL_Point	*center;
 	double		angle;
 }				t_pos;
-
 
 typedef struct	s_texture
 {
@@ -90,32 +83,31 @@ typedef struct	s_texture
 
 }				t_texture;
 
-typedef struct s_baguette
+typedef struct	s_baguette
 {
-	int			pos; // 0 normal ; 7  right; 14 left
+	int			pos;
 	int			state;
 	int			mutex;
 }				t_baguette;
 
-
-typedef struct s_philosophers
+typedef struct	s_philosophers
 {
 	int						hp;
 	int						state;
 	int						timeout;
 	char					name[124];
 	pthread_t				thread;
-	pthread_mutex_t		 	mutex_hp;
-	pthread_mutex_t		 	mutex_b_right;
-	pthread_mutex_t		 	mutex_b_left;
-	pthread_mutex_t		 	mutex_right;
-	pthread_mutex_t		 	mutex_left;
-	pthread_mutex_t		 	mutex_state;
-	pthread_mutex_t		 	mutex_eat;
-	pthread_mutex_t		 	mutex_timeout;
+	pthread_mutex_t			mutex_hp;
+	pthread_mutex_t			mutex_b_right;
+	pthread_mutex_t			mutex_b_left;
+	pthread_mutex_t			mutex_right;
+	pthread_mutex_t			mutex_left;
+	pthread_mutex_t			mutex_state;
+	pthread_mutex_t			mutex_eat;
+	pthread_mutex_t			mutex_timeout;
 	t_baguette				baguette;
 	struct s_philosophers	*right;
-	struct s_philosophers 	*left;
+	struct s_philosophers	*left;
 }				t_philosphers;
 
 /*
@@ -133,7 +125,7 @@ typedef struct	s_system
 typedef struct	s_window
 {
 	int			width;
-	int			height;	
+	int			height;
 }				t_window;
 
 /*
@@ -157,61 +149,60 @@ typedef struct	s_env
 /*
 ** initSDL pointer
 */
-void	philo_init_system(t_system *sys);
+void			philo_init_system(t_system *sys);
 /*
 ** Create window
 */
-t_err	philo_init_env(t_env *e);
+t_err			philo_init_env(t_env *e);
 /*
 ** Create Display
 */
-t_err	philo_init_display(t_env *env);
-t_err	philo_init_rect(t_env *env);
-t_err	philo_init_baguette(t_env *env);
+t_err			philo_init_display(t_env *env);
+t_err			philo_init_rect(t_env *env);
+t_err			philo_init_baguette(t_env *env);
 
-void	philo_init_philosophers(t_env *env);
-t_err	philo_add_philos(t_env *env);
+void			philo_init_philosophers(t_env *env);
+t_err			philo_add_philos(t_env *env);
 
-t_err	philo_add_baguettes(t_env *env);
+t_err			philo_add_baguettes(t_env *env);
 
 /*
 ********************************************************************************
 **									PHILOSOPHERS
 ********************************************************************************
 */
-t_err	philo_start_routine(t_env *env);
-void	philo_take_damage(t_philosphers *philo);
-int		philo_is_dead(t_philosphers *philo);
-t_err	philo_join_thread(t_philosphers *philo);
-
-int		take_is_own_baguette(t_philosphers *philo);
-int		philo_take_right_baguette(t_philosphers *philo);
-int		philo_eat(t_philosphers *philo);
+t_err			philo_start_routine(t_env *env);
+void			philo_take_damage(t_philosphers *philo);
+int				philo_is_dead(t_philosphers *philo);
+t_err			philo_join_thread(t_philosphers *philo);
+int				take_is_own_baguette(t_philosphers *philo);
+int				philo_take_right_baguette(t_philosphers *philo);
+int				philo_eat(t_philosphers *philo);
 /*
 ********************************************************************************
 **									DISPLAY
 ********************************************************************************
 */
-void	philo_display_philosophers(t_env *env);
-void	philo_display_baguettes(t_env *env);
+void			philo_display_philosophers(t_env *env);
+void			philo_display_baguettes(t_env *env);
 /*
 ********************************************************************************
 **									SYSTEM
 ********************************************************************************
 */
-t_err	philo_main_loop(t_env *env);
-void	philo_sdl_exit(t_system *sys);
-t_err	philo_error(t_env *env, t_err err);
-void	philo_init_pos(t_pos *pos);
-void	philo_init_pos_philo(t_pos *pos);
-void	philo_init_pos_baguette_right(t_pos *pos);
-void	philo_init_pos_baguette_left(t_pos *pos);
-t_err	philo_exit(t_env *env, t_err err);
+t_err			philo_main_loop(t_env *env);
+void			philo_sdl_exit(t_system *sys);
+t_err			philo_error(t_env *env, t_err err);
+void			philo_init_pos(t_pos *pos);
+void			philo_init_pos_philo(t_pos *pos);
+void			philo_init_pos_baguette_right(t_pos *pos);
+void			philo_init_pos_baguette_left(t_pos *pos);
+t_err			philo_exit(t_env *env, t_err err);
 
 /*
 ********************************************************************************
 **									DEBUG
 ********************************************************************************
 */
-void		philo_display_philo_console(t_philosphers *philo);
+void			philo_display_philo_console(t_philosphers *philo);
 #endif
