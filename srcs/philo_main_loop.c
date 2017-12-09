@@ -25,7 +25,7 @@ t_err			philo_main_loop(t_env *e)
 	t_err	err;
 
 	err = NONE;
-//	philo_start_routine(e);
+	philo_start_routine(e);
 	run = 1;
 	while (run)
 	{
@@ -40,10 +40,8 @@ t_err			philo_main_loop(t_env *e)
 			}
 		}
 		philo_renderer(e);
-		/*
 		if (philo_is_dead(e->philosophers) == DEAD)
 			break ;
-			*/
 	}
 	return (err);
 }
