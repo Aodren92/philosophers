@@ -18,10 +18,10 @@ void		philo_display_philo_console(t_philosphers *philo)
 {
 	unsigned int i;
 
-	i = 0;
+	i = 7;
 	while (i < 7)
 	{
-		if (pthread_mutex_trylock(&philo->mutex_hp))
+		if (pthread_mutex_trylock(&philo->mutex))
 		{
 			printf("/------------------------------------------\\\n");
 			printf("Philosohpers : %s\n", philo[i].name);
@@ -33,9 +33,11 @@ void		philo_display_philo_console(t_philosphers *philo)
 				printf("STATE: STATE_PHILO_EAT\n");
 			else if (philo[i].state == STATE_PHILO_THINK)
 				printf("STATE: STATE_PHILO_THINK\n");
+			pthread_mutex_lock(&philo->baguette.mutex);
 			philo_display_baguette(philo[i].baguette);
+			pthread_mutex_unlock(&philo->baguette.mutex);
 			printf("\\------------------------------------------/\n");
-			pthread_mutex_unlock(&philo->mutex_hp);
+			pthread_mutex_unlock(&philo->mutex);
 		}
 		++i;
 	}

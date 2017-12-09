@@ -90,33 +90,26 @@ typedef struct	s_texture
 
 }				t_texture;
 
-typedef struct s_baguette
+typedef struct 			s_baguette
 {
-	int			pos; // 0 normal ; 7  right; 14 left
-	int			state;
-	int			mutex;
-}				t_baguette;
+	int					pos; // 0 normal ; 7  right; 14 left
+	int					state;
+	pthread_mutex_t 	mutex;
+}						t_baguette;
 
 
-typedef struct s_philosophers
+typedef struct 				s_philosophers
 {
 	int						hp;
 	int						state;
 	int						timeout;
 	char					name[124];
 	pthread_t				thread;
-	pthread_mutex_t		 	mutex_hp;
-	pthread_mutex_t		 	mutex_b_right;
-	pthread_mutex_t		 	mutex_b_left;
-	pthread_mutex_t		 	mutex_right;
-	pthread_mutex_t		 	mutex_left;
-	pthread_mutex_t		 	mutex_state;
-	pthread_mutex_t		 	mutex_eat;
-	pthread_mutex_t		 	mutex_timeout;
+	pthread_mutex_t		 	mutex;
 	t_baguette				baguette;
 	struct s_philosophers	*right;
 	struct s_philosophers 	*left;
-}				t_philosphers;
+}							t_philosphers;
 
 /*
 ** typedef struct s_sdl t_sdl
