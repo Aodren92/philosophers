@@ -9,7 +9,7 @@
 # define EAT_T 1
 # define THINK_T 1
 # define REST_T 1
-# define TIMEOUT 60 * 60 * 24
+# define TIMEOUT 60
 
 # define DAMAGE_PER_S 1
 

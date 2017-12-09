@@ -18,7 +18,7 @@ void		philo_display_philo_console(t_philosphers *philo)
 {
 	unsigned int i;
 
-	i = 7;
+	i = 0;
 	while (i < 7)
 	{
 		if (pthread_mutex_trylock(&philo->mutex))

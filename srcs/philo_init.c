@@ -174,13 +174,13 @@ t_err	philo_init_rect(t_env *env)
 	env->texture[6].rect_s.y = 0;
 	env->texture[6].rect_s.w = 150;
 	env->texture[6].rect_s.h = 150;
-	env->texture[5].pos = 6;
+	env->texture[6].pos = 6;
 
 	env->texture[7].rect_s.x = 0;
 	env->texture[7].rect_s.y = 0;
 	env->texture[7].rect_s.w = 150;
 	env->texture[7].rect_s.h = 150;
-	env->texture[5].pos = 7;
+	env->texture[7].pos = 7;
 
 		// baguettes
 	env->texture[8].rect_s.x = 40;
