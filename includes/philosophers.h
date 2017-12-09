@@ -203,6 +203,9 @@ t_err	philo_main_loop(t_env *env);
 void	philo_sdl_exit(t_system *sys);
 t_err	philo_error(t_env *env, t_err err);
 void	philo_init_pos(t_pos *pos);
+void	philo_init_pos_philo(t_pos *pos);
+void	philo_init_pos_baguette_right(t_pos *pos);
+void	philo_init_pos_baguette_left(t_pos *pos);
 t_err	philo_exit(t_env *env, t_err err);
 
 /*
