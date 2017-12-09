@@ -3,7 +3,7 @@
 /*
 ** \XXX ad message box
 */
-void	philo_error(t_env *env, t_err error)
+t_err	philo_error(t_env *env, t_err error)
 {
 	(void)env;
 	if (error == E_INIT)
@@ -12,4 +12,5 @@ void	philo_error(t_env *env, t_err error)
 		ft_putstr_fd("Error =, couldn't find files\n", 2);
 	if (error == E_THREAD_CREATE)
 		ft_putstr_fd("Error =, error create thread\n", 2);
+	return (error);
 }

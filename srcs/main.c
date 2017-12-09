@@ -1,6 +1,10 @@
 #include "libft.h"
 #include "philosophers.h"
 
+/*
+** \XXX init func
+*/
+
 int		main(void)
 {
 	t_env env;
@@ -8,30 +12,18 @@ int		main(void)
 
 	philo_init_system(&env.sys);
 	if (SDL_Init(SDL_INIT_VIDEO))
-	{
-		philo_error(&env, E_INIT);
-		return (E_INIT);
-	}
+		return (philo_error(&env, E_INIT));
 	if ((err = philo_init_env(&env)))
-	{
-		philo_error(&env, err);
-		return (err);
-	}
+		return (philo_error(&env, err));
 	if ((err = philo_add_baguettes(&env)))
-	{
-		philo_error(&env, err);
-		return (err);
-	}
+		return (philo_error(&env, err));
 	if ((err = philo_init_display(&env)))
-	{
-		philo_error(&env, err);
-		return (err);
-	}
+		return (philo_error(&env, err));
 	philo_init_philosophers(&env);
 	philo_init_rect(&env);
 	philo_init_pos(env.pos);
 	if (!philo_main_loop(&env))
-		SDL_Quit(); 
+		SDL_Quit();
 	philo_join_thread(env.philosophers);
 	return (NONE);
 }
