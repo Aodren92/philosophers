@@ -47,10 +47,10 @@ void	philo_init_pos(t_pos *pos)
 	pos[4].center = 0;
 
 
-	pos[5].rect_d.x = 850;
-	pos[5].rect_d.y = 285;
-	pos[5].rect_d.w = 70;
-	pos[5].rect_d.h = 75;
+	pos[5].rect_d.x = 860;
+	pos[5].rect_d.y = 235;
+	pos[5].rect_d.w = 280;
+	pos[5].rect_d.h = 200;
 	pos[5].angle = 0;
 	pos[5].center = 0;
 
