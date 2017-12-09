@@ -7,7 +7,7 @@
 void	philo_display_baguettes(t_env *e)
 {
 	unsigned int	i;
-	unsigned int 	pos;
+	unsigned int	pos;
 	t_philosphers	*philo;
 
 	i = 8;

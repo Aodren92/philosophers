@@ -3,6 +3,7 @@
 /*
 ** \XXX ad message box
 */
+
 t_err	philo_error(t_env *env, t_err error)
 {
 	(void)env;
