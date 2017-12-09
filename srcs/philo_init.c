@@ -27,16 +27,8 @@ t_err		philo_init_env(t_env *e)
 
 static void	philo_init_mutex(t_env *env, int philo)
 {
-	env->philosophers[philo].mutex_left =
-		(pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	env->philosophers[philo].mutex_b_right =
-		(pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	env->philosophers[philo].mutex_b_left =
-		(pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	env->philosophers[philo].mutex_state =
-		(pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	env->philosophers[philo].mutex_timeout =
-		(pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+	pthread_mutex_init(&env->philosophers[philo].baguette.mutex_baguette,
+			0);
 }
 
 void		philo_init_philosophers(t_env *env)
@@ -49,10 +41,6 @@ void		philo_init_philosophers(t_env *env)
 		env->philosophers[i].hp = MAX_LIFE;
 		env->philosophers[i].state = STATE_PHILO_REST;
 		env->philosophers[i].baguette.pos = POS_BAGUETTE_NOR;
-		env->philosophers[i].mutex_hp =
-			(pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-		env->philosophers[i].mutex_right =
-			(pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 		env->philosophers[i].timeout = REST_T;
 		philo_init_mutex(env, i);
 		if (i == 6)

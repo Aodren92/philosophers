@@ -23,10 +23,11 @@ t_err			philo_main_loop(t_env *e)
 {
 	char	run;
 	t_err	err;
+	int		start;
 
 	err = NONE;
-	philo_start_routine(e);
 	run = 1;
+	start = 0;
 	while (run)
 	{
 		while (SDL_PollEvent(&e->sys.ev))
@@ -34,14 +35,15 @@ t_err			philo_main_loop(t_env *e)
 			if (e->sys.ev.type == SDL_QUIT)
 				return (philo_exit(e, NONE));
 			else if (e->sys.ev.type == SDL_KEYDOWN)
-			{
 				if (e->sys.ev.key.keysym.sym == SDLK_ESCAPE)
 					return (philo_exit(e, NONE));
-			}
 		}
-		philo_renderer(e);
 		if (philo_is_dead(e->philosophers) == DEAD)
 			break ;
+		if (!start++)
+			philo_start_routine(e);
+		if (start)
+			philo_renderer(e);
 	}
 	return (err);
 }

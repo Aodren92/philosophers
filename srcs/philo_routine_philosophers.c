@@ -13,14 +13,10 @@ void	*philo_routine_philosophers(void *arg)
 	t_philosphers *philo;
 
 	philo = (t_philosphers *)arg;
-	while (philo->hp > 0)
+	while (1)
 	{
-		if (philo->state == STATE_PHILO_REST && philo->timeout <= 0)
-			take_is_own_baguette(philo);
-		else if (philo->state == STATE_PHILO_THINK && philo->timeout <= 0)
-			philo_take_right_baguette(philo);
-		else if (philo->state == STATE_PHILO_EAT && philo->timeout <= 0)
-			philo_eat(philo);
+		take_is_own_baguette(philo);
+		philo_take_right_baguette(philo);
 	}
 	exit(EXIT_SUCCESS);
 	return (0);
