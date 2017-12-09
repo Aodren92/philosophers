@@ -48,4 +48,5 @@ void		philo_init_pos_philo(t_pos *pos)
 	pos[3].rect_d.h = 345;
 	pos[3].angle = 0;
 	pos[3].center = 0;
+	philo_init_pos_philo_next(pos);
 }

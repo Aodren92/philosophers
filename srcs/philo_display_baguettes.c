@@ -1,17 +1,16 @@
 #include "philosophers.h"
 
-# define DEBUG_POS_NORM 0
-# define DEBUG_POS_RIGHT 7
-# define DEBUG_POS_LEFT 14
+#define DEBUG_POS_NORM 0
+#define DEBUG_POS_RIGHT 7
+#define DEBUG_POS_LEFT 14
 
 void	philo_display_baguettes(t_env *e)
 {
 	unsigned int	i;
 	unsigned int 	pos;
-	t_philosphers *philo;
+	t_philosphers	*philo;
 
 	i = 8;
-
 	philo = e->philosophers;
 	while (i < 15)
 	{

@@ -2,15 +2,16 @@
 
 static t_err	philo_add_philo(t_env *env, char *path, int philo)
 {
-	SDL_Surface *bitmapSurface;
+	SDL_Surface *bitmapsurface;
 
-	if (!(bitmapSurface = SDL_LoadBMP(path)))
+	if (!(bitmapsurface = SDL_LoadBMP(path)))
 		return (E_TEXTURE);
-	SDL_SetColorKey(bitmapSurface,
-			SDL_TRUE, SDL_MapRGB(bitmapSurface->format, 0, 255, 0));
-	if (!(env->texture[philo].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
-		bitmapSurface)))
-	SDL_FreeSurface(bitmapSurface);
+	SDL_SetColorKey(bitmapsurface,
+			SDL_TRUE, SDL_MapRGB(bitmapsurface->format, 0, 255, 0));
+	if (!(env->texture[philo].tex =
+				SDL_CreateTextureFromSurface(env->sys.renderer
+					, bitmapsurface)))
+		SDL_FreeSurface(bitmapsurface);
 	return (NONE);
 }
 

@@ -1,6 +1,5 @@
 #include "philosophers.h"
 
-
 int		get_state_philo_left(t_philosphers *philo)
 {
 	int state;
@@ -34,6 +33,7 @@ int		get_state_philo_right(t_philosphers *philo)
 /*
 ** call when is rest
 */
+
 int		take_is_own_baguette(t_philosphers *philo)
 {
 	if (pthread_mutex_trylock(&philo->mutex_hp))
@@ -75,11 +75,11 @@ int		philo_eat(t_philosphers *philo)
 {
 	if (pthread_mutex_trylock(&philo->mutex_eat))
 	{
-			philo->hp = MAX_LIFE;
-			philo->state = STATE_PHILO_REST;
-			philo->timeout = REST_T;
-			pthread_mutex_unlock(&philo->mutex_b_right);
-			return (1);
+		philo->hp = MAX_LIFE;
+		philo->state = STATE_PHILO_REST;
+		philo->timeout = REST_T;
+		pthread_mutex_unlock(&philo->mutex_b_right);
+		return (1);
 	}
 	return (0);
 }

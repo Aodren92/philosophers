@@ -1,6 +1,4 @@
 #include "philosophers.h"
-
-
 #include <stdio.h>
 
 static void	philo_display_baguette(t_baguette bag)
