@@ -87,7 +87,7 @@ typedef struct	s_baguette
 {
 	int			pos;
 	int			state;
-	int			mutex;
+	int			mutex_baguette;
 }				t_baguette;
 
 typedef struct	s_philosophers

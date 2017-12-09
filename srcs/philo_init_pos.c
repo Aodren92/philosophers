@@ -41,6 +41,8 @@ static void	philo_init_pos_baguette(t_pos *pos)
 	pos[8].rect_d.h = 85;
 	pos[8].angle = 70;
 	pos[8].center = 0;
+
+
 	pos[9].rect_d.x = 360;
 	pos[9].rect_d.y = 470;
 	pos[9].rect_d.w = 30;
