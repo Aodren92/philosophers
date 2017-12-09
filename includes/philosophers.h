@@ -170,7 +170,9 @@ t_err	philo_init_rect(t_env *env);
 t_err	philo_init_baguette(t_env *env);
 
 void	philo_init_philosophers(t_env *env);
+t_err	philo_add_philos(t_env *env);
 
+t_err	philo_add_baguettes(t_env *env);
 
 /*
 ********************************************************************************

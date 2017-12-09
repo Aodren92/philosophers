@@ -14,7 +14,8 @@ SRCS_NAME = main.c philo_init.c philo_error.c philo_exit.c philo_main_loop.c\
 			philo_error.c philo_init_pos.c philo_display_philosophers.c\
 			philo_display_baguettes.c philo_philosophers.c\
 			philo_routine_philosophers.c philo_take_dammage.c\
-			philo_debug_console.c
+			philo_debug_console.c philo_add_philo.c philo_add_baguettes.c\
+			philo_init_rect.c\
 
 SRCS_PATH = ./srcs/
 
