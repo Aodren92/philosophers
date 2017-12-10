@@ -13,7 +13,9 @@ t_err	philo_init_text_name(t_env *env, int index, char *name,
 
 	hp = ft_itoa(env->philosophers->hp);
 	ft_strcpy(display, name);
-	ft_strcat(display, ": ");
+	ft_strcat(display, ":");
+	philo_space_char(display + ft_strlen(name) + 1, env->philosophers->hp, 19 -
+	ft_strlen(name));
 	ft_strcat(display, hp);
 	ft_strcat(display, " HP");
 	free(hp);
@@ -32,7 +34,9 @@ t_err	philo_init_text(t_env *env)
 	unsigned int i;
 
 	i = 0;
-	if (!(env->sys.font = TTF_OpenFont(FONT, 600)))
+	if (!(env->sys.font = TTF_OpenFont(FONT, 1200)))
+		return (E_INIT);
+	if (!(env->sys.font_start = TTF_OpenFont(FONT_START, 1200)))
 		return (E_INIT);
 	philo_init_color(env);
 	while (i < 7)

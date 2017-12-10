@@ -28,7 +28,8 @@
 # define ALIVE 1
 # define DEAD 0
 
-# define FONT "angelina.ttf"
+# define FONT_START "angelina.ttf"
+# define FONT "BebasNeue.ttf"
 
 typedef enum	e_state_philo
 {
@@ -123,6 +124,7 @@ typedef struct	s_system
 	SDL_Renderer	*renderer;
 	SDL_Event		ev;
 	TTF_Font		*font;
+	TTF_Font		*font_start;
 }				t_system;
 
 typedef struct	s_window
@@ -220,4 +222,6 @@ t_err			philo_exit(t_env *env, t_err err);
 ********************************************************************************
 */
 void			philo_display_philo_console(t_philosphers *philo);
+
+void			philo_space_char(char *dst, int nbr, unsigned int space);
 #endif

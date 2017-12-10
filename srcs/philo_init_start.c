@@ -16,22 +16,22 @@ t_err		philo_init_start(t_env *env)
 
 	i = 0;
 	philo_init_color_start(&textcolor);
-	surface = TTF_RenderText_Solid(env->sys.font, "PhiLoSoPHerS", textcolor);
-	if (!surface)
+	if (!surface = TTF_RenderText_Solid(env->sys.font_start,
+		"PhiLoSoPHerS", textcolor))
 		return (E_INIT);
 	if (!(env->start[0].tex =
 				SDL_CreateTextureFromSurface(env->sys.renderer, surface)))
 		return (E_INIT);
 	SDL_FreeSurface(surface);
-	surface = TTF_RenderText_Solid(env->sys.font, "Press Start", textcolor);
-	if (!surface)
+	if (!(surface = TTF_RenderText_Solid(env->sys.font_start,
+		"Press Start", textcolor)))
 		return (E_INIT);
 	if (!(env->start[1].tex =
 				SDL_CreateTextureFromSurface(env->sys.renderer, surface)))
 		return (E_INIT);
 	SDL_FreeSurface(surface);
-	env->start[1].rect_d.x = 500;
-	env->start[1].rect_d.y = 500;
+	env->start[1].rect_d.x = 550;
+	env->start[1].rect_d.y = 550;
 	env->start[1].rect_d.h = 100;
 	env->start[1].rect_d.w = 150;
 	return (NONE);
