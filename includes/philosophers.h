@@ -120,6 +120,7 @@ typedef struct	s_system
 	SDL_Window		*win;
 	SDL_Renderer	*renderer;
 	SDL_Event		ev;
+	TTF_Font		*font;
 }				t_system;
 
 typedef struct	s_window
@@ -166,6 +167,8 @@ void			philo_init_philosophers(t_env *env);
 t_err			philo_add_philos(t_env *env);
 
 t_err			philo_add_baguettes(t_env *env);
+
+t_err			philo_init_text(t_env *env);
 
 /*
 ********************************************************************************

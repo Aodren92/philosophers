@@ -11,13 +11,15 @@ int		main(void)
 	t_err err;
 
 	philo_init_system(&env.sys);
-	if (SDL_Init(SDL_INIT_VIDEO))
+	if (SDL_Init(SDL_INIT_VIDEO) || TTF_Init())
 		return (philo_error(&env, E_INIT));
 	if ((err = philo_init_env(&env)))
 		return (philo_error(&env, err));
 	if ((err = philo_add_baguettes(&env)))
 		return (philo_error(&env, err));
 	if ((err = philo_init_display(&env)))
+		return (philo_error(&env, err));
+	if ((err = philo_init_text(&env)))
 		return (philo_error(&env, err));
 	philo_init_philosophers(&env);
 	philo_init_rect(&env);
