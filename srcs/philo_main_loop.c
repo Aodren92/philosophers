@@ -13,10 +13,11 @@ static void		philo_renderer(t_env *e)
 	SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, NULL, NULL);
 	philo_display_philosophers(e);
 	philo_display_baguettes(e);
+	philo_display_text(e);
 	SDL_RenderPresent(e->sys.renderer);
 	usleep(SECONDE);
 	philo_take_damage(e->philosophers);
-	philo_display_philo_console(e->philosophers);
+	//philo_display_philo_console(e->philosophers);
 }
 
 t_err			philo_main_loop(t_env *e)

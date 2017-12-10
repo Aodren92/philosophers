@@ -81,7 +81,6 @@ typedef struct	s_texture
 	SDL_Texture			*tex;
 	SDL_Rect			rect_s;
 	unsigned int		pos;
-
 }				t_texture;
 
 typedef struct	s_info_philo
@@ -89,6 +88,7 @@ typedef struct	s_info_philo
 	SDL_Texture			*tex;
 	SDL_Rect			rect_s;
 	SDL_Rect			rect_d;
+	SDL_Color			sdl_color;
 }				t_info_philo;
 
 typedef struct	s_baguette
@@ -141,6 +141,7 @@ typedef struct	s_env
 	t_pos			pos[29];
 	t_texture		texture[NBR_TEXTURES];
 	t_philosphers	philosophers[7];
+	t_info_philo	text[7];
 }				t_env;
 
 /*
@@ -165,10 +166,13 @@ t_err			philo_init_baguette(t_env *env);
 
 void			philo_init_philosophers(t_env *env);
 t_err			philo_add_philos(t_env *env);
+t_err			philo_init_text_name(t_env *env, int index, char *name,
+				SDL_Color textColor);
 
 t_err			philo_add_baguettes(t_env *env);
 
 t_err			philo_init_text(t_env *env);
+void			philo_init_color(t_env *env);
 
 /*
 ********************************************************************************
@@ -189,6 +193,7 @@ int				philo_eat(t_philosphers *philo);
 */
 void			philo_display_philosophers(t_env *env);
 void			philo_display_baguettes(t_env *env);
+void			philo_display_text(t_env *env);
 /*
 ********************************************************************************
 **									SYSTEM
@@ -201,6 +206,7 @@ void			philo_init_pos(t_pos *pos);
 void			philo_init_pos_philo(t_pos *pos);
 void			philo_init_pos_baguette_right(t_pos *pos);
 void			philo_init_pos_baguette_left(t_pos *pos);
+void			philo_init_pos_name(t_env *env);
 t_err			philo_exit(t_env *env, t_err err);
 
 /*
