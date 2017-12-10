@@ -2,6 +2,7 @@
 # define PHILOSOPHERS_H
 
 # include <SDL2/SDL.h>
+# include <SDL2/SDL_ttf.h>
 # include <pthread.h>
 # include "libft.h"
 
@@ -83,6 +84,13 @@ typedef struct	s_texture
 
 }				t_texture;
 
+typedef struct	s_info_philo
+{
+	SDL_Texture			*tex;
+	SDL_Rect			rect_s;
+	SDL_Rect			rect_d;
+}				t_info_philo;
+
 typedef struct	s_baguette
 {
 	int					pos;
@@ -97,16 +105,6 @@ typedef struct	s_philosophers
 	int						timeout;
 	char					name[124];
 	pthread_t				thread;
-	/*
-	pthread_mutex_t			mutex_hp;
-	pthread_mutex_t			mutex_b_right;
-	pthread_mutex_t			mutex_b_left;
-	pthread_mutex_t			mutex_right;
-	pthread_mutex_t			mutex_left;
-	pthread_mutex_t			mutex_state;
-	pthread_mutex_t			mutex_eat;
-	pthread_mutex_t			mutex_timeout;
-	*/
 	t_baguette				baguette;
 	struct s_philosophers	*right;
 	struct s_philosophers	*left;
@@ -134,6 +132,7 @@ typedef struct	s_window
 ** typedef struct s_env t_env;
 ** Contain all pointer to another structs
 */
+
 typedef struct	s_env
 {
 	t_system		sys;

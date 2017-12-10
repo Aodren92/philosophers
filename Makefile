@@ -26,7 +26,7 @@ INCLUDES_LIBFT = ./libft/includes
 
 BREW_INCLUDES  = $(HOME)/.brew/include
 
-LIBS = -lft -lSDL2
+LIBS = -lft -lSDL2 -lSDL2_ttf
 
 LIBFT_PATH = ./libft
 
