@@ -28,6 +28,9 @@
 # define ALIVE 1
 # define DEAD 0
 
+
+# define FONT "angelina.ttf"
+
 typedef enum	e_state_philo
 {
 	STATE_PHILO_REST,

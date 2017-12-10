@@ -1,24 +1,32 @@
 #include "philosophers.h"
-# define FONT "angelina.ttf"
 
-t_err	philo_init_start(t_env *env)
+static void	philo_init_color_start(SDL_Color *color)
 {
-	unsigned int i;
+	color->r = 50;
+	color->g = 255;
+	color->b = 120;
+	color->a = 255;
+}
+
+t_err		philo_init_start(t_env *env)
+{
+	unsigned int	i;
 	SDL_Surface		*surface;
-	SDL_Color		textColor = {50, 255, 120, 255};
+	SDL_Color		textcolor;
 
 	i = 0;
-	surface = TTF_RenderText_Solid(env->sys.font, "PhiLoSoPHerS", textColor); 
+	philo_init_color_start(&textcolor);
+	surface = TTF_RenderText_Solid(env->sys.font, "PhiLoSoPHerS", textcolor);
 	if (!surface)
 		return (E_INIT);
-	if (!(env->start[0].tex = 
+	if (!(env->start[0].tex =
 				SDL_CreateTextureFromSurface(env->sys.renderer, surface)))
 		return (E_INIT);
 	SDL_FreeSurface(surface);
-	surface = TTF_RenderText_Solid(env->sys.font, "Press Start", textColor); 
+	surface = TTF_RenderText_Solid(env->sys.font, "Press Start", textcolor);
 	if (!surface)
 		return (E_INIT);
-	if (!(env->start[1].tex = 
+	if (!(env->start[1].tex =
 				SDL_CreateTextureFromSurface(env->sys.renderer, surface)))
 		return (E_INIT);
 	SDL_FreeSurface(surface);

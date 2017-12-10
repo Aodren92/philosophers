@@ -1,11 +1,11 @@
 #include "philosophers.h"
-# define FONT "angelina.ttf"
 
-/**
- * \XXX add some space 
- **/
+/*
+** \XXX add some space
+*/
+
 t_err	philo_init_text_name(t_env *env, int index, char *name,
-		SDL_Color textColor)
+		SDL_Color textcolor)
 {
 	char			display[1024];
 	char			*hp;
@@ -17,7 +17,7 @@ t_err	philo_init_text_name(t_env *env, int index, char *name,
 	ft_strcat(display, hp);
 	ft_strcat(display, " HP");
 	free(hp);
-	surface = TTF_RenderText_Solid(env->sys.font, display, textColor); 
+	surface = TTF_RenderText_Solid(env->sys.font, display, textcolor);
 	if (!surface)
 		return (E_INIT);
 	if (!(env->text[index].tex =
@@ -29,16 +29,17 @@ t_err	philo_init_text_name(t_env *env, int index, char *name,
 
 t_err	philo_init_text(t_env *env)
 {
-	unsigned int i = 0;
+	unsigned int i;
 
+	i = 0;
 	if (!(env->sys.font = TTF_OpenFont(FONT, 600)))
 		return (E_INIT);
 	philo_init_color(env);
 	while (i < 7)
 	{
-		if (philo_init_text_name(env, i, env->philosophers[i].name, 
+		if (philo_init_text_name(env, i, env->philosophers[i].name,
 					env->text[i].sdl_color))
-		return (E_INIT);
+			return (E_INIT);
 		++i;
 	}
 	philo_init_pos_name(env);
