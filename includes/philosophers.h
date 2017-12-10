@@ -28,7 +28,6 @@
 # define ALIVE 1
 # define DEAD 0
 
-
 # define FONT "angelina.ttf"
 
 typedef enum	e_state_philo
@@ -98,7 +97,7 @@ typedef struct	s_baguette
 {
 	int					pos;
 	int					state;
-	pthread_mutex_t 	mutex_baguette;
+	pthread_mutex_t		mutex_baguette;
 }				t_baguette;
 
 typedef struct	s_philosophers
@@ -173,7 +172,7 @@ t_err			philo_init_start(t_env *env);
 void			philo_init_philosophers(t_env *env);
 t_err			philo_add_philos(t_env *env);
 t_err			philo_init_text_name(t_env *env, int index, char *name,
-				SDL_Color textColor);
+				SDL_Color textcolor);
 
 t_err			philo_add_baguettes(t_env *env);
 

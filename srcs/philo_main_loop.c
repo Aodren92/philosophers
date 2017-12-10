@@ -19,28 +19,27 @@ static void		philo_renderer(t_env *e)
 		SDL_RenderPresent(e->sys.renderer);
 		usleep(SECONDE);
 		philo_take_damage(e->philosophers);
-	}else
+	}
+	else
 	{
 		usleep(SECONDE / 2);
 		SDL_RenderCopy(e->sys.renderer, e->start[0].tex, 0, 0);
-		SDL_RenderCopy(e->sys.renderer, e->start[1].tex, 0, &e->start[1].rect_d);
+		SDL_RenderCopy(e->sys.renderer, e->start[1].tex, 0,
+				&e->start[1].rect_d);
 		SDL_RenderPresent(e->sys.renderer);
 		usleep(SECONDE / 2);
 		SDL_RenderCopy(e->sys.renderer, e->start[0].tex, 0, 0);
 		SDL_RenderPresent(e->sys.renderer);
 	}
-	//philo_display_philo_console(e->philosophers);
 }
 
 t_err			philo_main_loop(t_env *e)
 {
 	char	run;
 	t_err	err;
-	int		start;
 
 	err = NONE;
 	run = 1;
-	start = 0;
 	while (run)
 	{
 		while (SDL_PollEvent(&e->sys.ev))
@@ -52,16 +51,12 @@ t_err			philo_main_loop(t_env *e)
 				if (e->sys.ev.key.keysym.sym == SDLK_ESCAPE)
 					return (philo_exit(e, NONE));
 				if (e->sys.ev.key.keysym.sym == SDLK_SPACE && e->state == 0)
-				{
-					e->state = 1;
 					philo_start_routine(e);
-				}
 			}
 		}
 		if (philo_is_dead(e->philosophers) == DEAD)
 			break ;
 		philo_renderer(e);
-//		if (!start++)
 	}
 	return (err);
 }

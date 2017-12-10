@@ -28,6 +28,7 @@ t_err	philo_start_routine(t_env *env)
 	unsigned int i;
 
 	i = 0;
+	env->state = 1;
 	while (i < 7)
 	{
 		if (pthread_create(&env->philosophers[i].thread, 0,
