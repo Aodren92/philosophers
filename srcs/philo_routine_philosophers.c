@@ -13,13 +13,12 @@ void	*philo_routine_philosophers(void *arg)
 	t_philosphers *philo;
 
 	philo = (t_philosphers *)arg;
-	while (1)
+	while (philo->hp > 0)
 	{
 		take_is_own_baguette(philo);
 		philo_take_right_baguette(philo);
 		philo_eat(philo);
 	}
-	exit(EXIT_SUCCESS);
 	return (0);
 }
 
