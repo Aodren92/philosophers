@@ -50,6 +50,7 @@ $(OBJ_DIR_NAME)/%.o : $(SRCS_PATH)/%.c
 sdl:
 ifeq ($(OS_NAME),Darwin)
 	brew install -y SDL2
+	brew install -y sdl2_ttf
 endif
 ifeq ($(OS_NAME),Linux)
 	sudo apt-get install -y libsdl2-2.0-0 libsdl2-dev 

@@ -10,9 +10,16 @@ int		take_is_own_baguette(t_philosphers *philo)
 	{
 		if (philo->state == STATE_PHILO_REST && philo->timeout <= 0)
 		{
-			philo->state = STATE_PHILO_THINK;
-			philo->timeout = THINK_T;
-			philo->baguette.pos = POS_BAGUETTE_LEFT;
+			if (!pthread_mutex_trylock(&philo->right->baguette.mutex_baguette))
+			{
+				if (philo->right->state != STATE_PHILO_EAT)
+				{
+					philo->state = STATE_PHILO_THINK;
+					philo->timeout = THINK_T;
+					philo->baguette.pos = POS_BAGUETTE_LEFT;
+				}
+				pthread_mutex_unlock(&philo->right->baguette.mutex_baguette);
+			}
 		}
 		pthread_mutex_unlock(&philo->baguette.mutex_baguette);
 	}
@@ -20,8 +27,8 @@ int		take_is_own_baguette(t_philosphers *philo)
 }
 
 /*
-** call when is thinking
-*/
+ ** call when is thinking
+ */
 
 int		philo_take_right_baguette(t_philosphers *philo)
 {
@@ -41,8 +48,11 @@ int		philo_take_right_baguette(t_philosphers *philo)
 					philo->right->state = STATE_PHILO_REST;
 					philo->right->timeout = REST_T;
 				}
+				pthread_mutex_unlock(&philo->baguette.mutex_baguette);
+				return (1);
 			}
-			pthread_mutex_unlock(&philo->baguette.mutex_baguette);
+			else
+				pthread_mutex_unlock(&philo->baguette.mutex_baguette);
 		}
 		pthread_mutex_unlock(&philo->right->baguette.mutex_baguette);
 	}
@@ -53,8 +63,7 @@ int		philo_eat(t_philosphers *philo)
 {
 	if (!pthread_mutex_trylock(&philo->baguette.mutex_baguette))
 	{
-		if (philo->state == STATE_PHILO_EAT && philo->timeout <= 0 &&
-				!pthread_mutex_lock(&philo->right->baguette.mutex_baguette))
+		if (philo->state == STATE_PHILO_EAT && philo->timeout <= 0)
 		{
 			philo->state = STATE_PHILO_REST;
 			philo->timeout = REST_T;
