@@ -27,8 +27,8 @@ int		take_is_own_baguette(t_philosphers *philo)
 }
 
 /*
- ** call when is thinking
- */
+** call when is thinking
+*/
 
 int		philo_take_right_baguette(t_philosphers *philo)
 {
