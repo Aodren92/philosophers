@@ -142,6 +142,8 @@ typedef struct	s_env
 	t_texture		texture[NBR_TEXTURES];
 	t_philosphers	philosophers[7];
 	t_info_philo	text[7];
+	t_info_philo	start[2];
+	int				state;
 }				t_env;
 
 /*
@@ -163,6 +165,7 @@ t_err			philo_init_env(t_env *e);
 t_err			philo_init_display(t_env *env);
 t_err			philo_init_rect(t_env *env);
 t_err			philo_init_baguette(t_env *env);
+t_err			philo_init_start(t_env *env);
 
 void			philo_init_philosophers(t_env *env);
 t_err			philo_add_philos(t_env *env);

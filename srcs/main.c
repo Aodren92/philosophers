@@ -21,6 +21,8 @@ int		main(void)
 		return (philo_error(&env, err));
 	if ((err = philo_init_text(&env)))
 		return (philo_error(&env, err));
+	if ((err = philo_init_start(&env)))
+		return (philo_error(&env, err));
 	philo_init_philosophers(&env);
 	philo_init_rect(&env);
 	philo_init_pos(env.pos);
