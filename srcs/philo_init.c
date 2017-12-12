@@ -68,7 +68,7 @@ t_err		philo_init_display(t_env *env)
 	if (!(env->texture[0].tex = SDL_CreateTextureFromSurface(env->sys.renderer,
 					bitmapsurface[0])))
 		return (E_INIT);
-	SDL_FreeSurface(bitmapsurface[1]);
+	SDL_FreeSurface(bitmapsurface[0]);
 	philo_add_philos(env);
 	return (NONE);
 }

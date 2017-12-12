@@ -10,8 +10,8 @@
 # define EAT_T 1
 # define THINK_T 1
 # define REST_T 1
-# define TIMEOUT 3
-# define DAMAGE_PER_S 1000
+# define TIMEOUT 60
+# define DAMAGE_PER_S 1
 # define WIN_NAME "Philosophers"
 # define NBR_TEXTURES 15
 

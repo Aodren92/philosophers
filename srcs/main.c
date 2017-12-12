@@ -10,6 +10,7 @@ int		main(void)
 	t_env env;
 	t_err err;
 
+	ft_bzero(&env, sizeof(t_env));
 	philo_init_system(&env.sys);
 	if (SDL_Init(SDL_INIT_VIDEO) || TTF_Init())
 		return (philo_error(&env, E_INIT));
@@ -27,7 +28,10 @@ int		main(void)
 	philo_init_rect(&env);
 	philo_init_pos(env.pos);
 	if (!philo_main_loop(&env))
+	{
+		TTF_Quit();
 		SDL_Quit();
+	}
 	philo_join_thread(env.philosophers);
 	return (NONE);
 }

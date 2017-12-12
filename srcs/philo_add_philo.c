@@ -8,10 +8,10 @@ static t_err	philo_add_philo(t_env *env, char *path, int philo)
 		return (E_TEXTURE);
 	SDL_SetColorKey(bitmapsurface,
 			SDL_TRUE, SDL_MapRGB(bitmapsurface->format, 0, 255, 0));
-	if (!(env->texture[philo].tex =
+	env->texture[philo].tex =
 				SDL_CreateTextureFromSurface(env->sys.renderer
-					, bitmapsurface)))
-		SDL_FreeSurface(bitmapsurface);
+					, bitmapsurface);
+	SDL_FreeSurface(bitmapsurface);
 	return (NONE);
 }
 
