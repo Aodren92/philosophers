@@ -10,9 +10,9 @@
 # define EAT_T 1
 # define THINK_T 1
 # define REST_T 1
-# define TIMEOUT 60 * 60 * 24
+# define TIMEOUT 5
 # define DAMAGE_PER_S 1
-# define WIN_NAME "PHILO"
+# define WIN_NAME "Philosophers"
 # define NBR_TEXTURES 15
 
 /*
@@ -27,6 +27,8 @@
 # define BAGUETTE_INDISPO 0
 # define ALIVE 1
 # define DEAD 0
+# define RUNNING 1
+# define STOPPED 0
 
 # define FONT_START "angelina.ttf"
 # define FONT "BebasNeue.ttf"
@@ -109,6 +111,7 @@ typedef struct	s_philosophers
 	char					name[124];
 	pthread_t				thread;
 	t_baguette				baguette;
+	char 					running;
 	struct s_philosophers	*right;
 	struct s_philosophers	*left;
 }				t_philosphers;
@@ -148,6 +151,7 @@ typedef struct	s_env
 	t_info_philo	text[7];
 	t_info_philo	start[2];
 	int				state;
+	int 			timeout;
 }				t_env;
 
 /*
@@ -215,6 +219,7 @@ void			philo_init_pos_baguette_right(t_pos *pos);
 void			philo_init_pos_baguette_left(t_pos *pos);
 void			philo_init_pos_name(t_env *env);
 t_err			philo_exit(t_env *env, t_err err);
+t_err			philo_exit_gfx(t_env *env, t_err err);
 
 /*
 ********************************************************************************
@@ -222,6 +227,5 @@ t_err			philo_exit(t_env *env, t_err err);
 ********************************************************************************
 */
 void			philo_display_philo_console(t_philosphers *philo);
-
 void			philo_space_char(char *dst, int nbr, unsigned int space);
 #endif

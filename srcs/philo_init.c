@@ -11,6 +11,7 @@ t_err		philo_init_env(t_env *e)
 	e->win.width = 1280;
 	e->win.height = 720;
 	e->state = 0;
+	e->timeout = TIMEOUT;
 	if ((e->sys.win = SDL_CreateWindow(WIN_NAME, SDL_WINDOWPOS_UNDEFINED,
 					SDL_WINDOWPOS_UNDEFINED, e->win.width, e->win.height,
 					0)) == NULL)
@@ -43,6 +44,7 @@ void		philo_init_philosophers(t_env *env)
 		env->philosophers[i].state = STATE_PHILO_REST;
 		env->philosophers[i].baguette.pos = POS_BAGUETTE_NOR;
 		env->philosophers[i].timeout = REST_T;
+		env->philosophers[i].running = RUNNING;
 		philo_init_mutex(env, i);
 		if (i == 6)
 			env->philosophers[i].left = &env->philosophers[0];

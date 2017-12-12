@@ -33,14 +33,46 @@ static void		philo_renderer(t_env *e)
 	}
 }
 
+static void		philo_last_screen_renderer(t_env *e)
+{
+	SDL_RenderClear(e->sys.renderer);
+	SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, 0, 0);
+	philo_display_philosophers(e);
+	philo_display_baguettes(e);
+	philo_display_text(e);
+	SDL_RenderPresent(e->sys.renderer);
+}
+
+static t_err		philo_last_screen_loop(t_env *e)
+{
+	while (1)
+	{
+		while (SDL_PollEvent(&e->sys.ev))
+		{
+			if (e->sys.ev.type == SDL_QUIT)
+				return (philo_exit_gfx(e, NONE));
+			else if (e->sys.ev.type == SDL_KEYDOWN)
+			{
+				if (e->sys.ev.key.keysym.sym == SDLK_ESCAPE)
+					return (philo_exit_gfx(e, NONE));
+			}
+		}
+		philo_last_screen_renderer(e);
+	}
+	return (NONE);
+}
+
+static int 		philo_should_exit(t_env *e)
+{
+	if (e->timeout <= 0)
+		return (1);
+	e->timeout--;
+	return (0);
+}
+
 t_err			philo_main_loop(t_env *e)
 {
-	char	run;
-	t_err	err;
-
-	err = NONE;
-	run = 1;
-	while (run)
+	while (1)
 	{
 		while (SDL_PollEvent(&e->sys.ev))
 		{
@@ -56,7 +88,11 @@ t_err			philo_main_loop(t_env *e)
 		}
 		if (philo_is_dead(e->philosophers) == DEAD)
 			break ;
+		if (e->state && philo_should_exit(e))
+			break ;
 		philo_renderer(e);
 	}
-	return (err);
+	philo_join_thread(e->philosophers);
+	philo_last_screen_loop(e);
+	return (NONE);
 }

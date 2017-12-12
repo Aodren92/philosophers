@@ -14,3 +14,13 @@ t_err		philo_exit(t_env *env, t_err err)
 	philo_join_thread(env->philosophers);
 	return (err);
 }
+
+t_err		philo_exit_gfx(t_env *env, t_err err)
+{
+	if (err)
+		philo_error(env, err);
+	TTF_CloseFont(env->sys.font);
+	TTF_CloseFont(env->sys.font_start);
+	SDL_Quit();
+	return (err);
+}

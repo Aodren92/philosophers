@@ -13,7 +13,7 @@ void	*philo_routine_philosophers(void *arg)
 	t_philosphers *philo;
 
 	philo = (t_philosphers *)arg;
-	while (philo->hp > 0)
+	while (philo->hp > 0 && philo->running)
 	{
 		take_is_own_baguette(philo);
 		philo_take_right_baguette(philo);
@@ -45,7 +45,7 @@ t_err	philo_join_thread(t_philosphers *philo)
 	i = 0;
 	while (i < 7)
 	{
-		philo[i].hp = -1;
+		philo[i].running = STOPPED;
 		if (pthread_join(philo[i].thread, 0))
 			return (E_THREAD_JOIN);
 		++i;
