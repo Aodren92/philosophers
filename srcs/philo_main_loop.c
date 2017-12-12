@@ -16,6 +16,7 @@ static void		philo_renderer(t_env *e)
 		philo_display_philosophers(e);
 		philo_display_baguettes(e);
 		philo_display_text(e);
+		philo_display_timeout(e);
 		SDL_RenderPresent(e->sys.renderer);
 		usleep(SECONDE);
 		philo_take_damage(e->philosophers);
@@ -40,6 +41,7 @@ static void		philo_last_screen_renderer(t_env *e)
 	philo_display_philosophers(e);
 	philo_display_baguettes(e);
 	philo_display_text(e);
+	philo_display_timeout(e);
 	SDL_RenderPresent(e->sys.renderer);
 }
 

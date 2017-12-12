@@ -10,7 +10,7 @@
 # define EAT_T 1
 # define THINK_T 1
 # define REST_T 1
-# define TIMEOUT 5
+# define TIMEOUT 60
 # define DAMAGE_PER_S 1
 # define WIN_NAME "Philosophers"
 # define NBR_TEXTURES 15
@@ -149,6 +149,8 @@ typedef struct	s_env
 	t_texture		texture[NBR_TEXTURES];
 	t_philosphers	philosophers[7];
 	t_info_philo	text[7];
+	t_info_philo	text_timeout;
+	t_info_philo	text_end;
 	t_info_philo	start[2];
 	int				state;
 	int 			timeout;
@@ -205,6 +207,7 @@ int				philo_eat(t_philosphers *philo);
 void			philo_display_philosophers(t_env *env);
 void			philo_display_baguettes(t_env *env);
 void			philo_display_text(t_env *env);
+void			philo_display_timeout(t_env *env);
 /*
 ********************************************************************************
 **									SYSTEM

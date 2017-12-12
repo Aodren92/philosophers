@@ -14,6 +14,10 @@ static void	philo_init_color_next(t_env *env)
 	env->text[6].sdl_color.g = 255;
 	env->text[6].sdl_color.b = 255;
 	env->text[6].sdl_color.a = 0;
+	env->text_timeout.sdl_color.r = 255;
+	env->text_timeout.sdl_color.g = 0;
+	env->text_timeout.sdl_color.b = 0;
+	env->text_timeout.sdl_color.a = 0;
 }
 
 void		philo_init_color(t_env *env)

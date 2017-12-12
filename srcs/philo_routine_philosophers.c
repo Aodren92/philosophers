@@ -1,8 +1,5 @@
 #include "philosophers.h"
-#include <time.h>
-#include <stdio.h>
 #define SECONDE 1000000
-#include <stdlib.h>
 
 /*
 ** routine for each philo
