@@ -18,8 +18,6 @@ static void		philo_renderer(t_env *e)
 		philo_display_text(e);
 		philo_display_timeout(e);
 		SDL_RenderPresent(e->sys.renderer);
-		usleep(SECONDE);
-		philo_take_damage(e->philosophers);
 	}
 	else
 	{
@@ -65,11 +63,10 @@ static t_err		philo_last_screen_loop(t_env *e)
 	return (NONE);
 }
 
-static int 		philo_should_exit(t_env *e)
+static int 		philo_should_end(t_env *e)
 {
-	if (e->timeout <= 0)
+	if (e->end <= time(NULL))
 		return (1);
-	e->timeout--;
 	return (0);
 }
 
@@ -77,6 +74,7 @@ t_err			philo_main_loop(t_env *e)
 {
 	while (1)
 	{
+
 		while (SDL_PollEvent(&e->sys.ev))
 		{
 			if (e->sys.ev.type == SDL_QUIT)
@@ -91,7 +89,7 @@ t_err			philo_main_loop(t_env *e)
 		}
 		if ((e->victory = philo_is_dead(e->philosophers)) == DEAD)
 			break ;
-		if (e->state && philo_should_exit(e))
+		if (e->state && philo_should_end(e))
 			break ;
 		philo_renderer(e);
 	}

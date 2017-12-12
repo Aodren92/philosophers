@@ -5,10 +5,13 @@ void	philo_display_timeout(t_env *env)
 	char			display[1024];
 	char			*timeout;
 	SDL_Surface		*surface;
+	time_t 			diff;
 
 	ft_bzero(display, 1024);
-	if (!(timeout = ft_itoa(env->timeout)))
-		return ;
+	if ((diff = env->end - time(NULL)) < 0)
+		diff = 0;
+	if (!(timeout = ft_itoa(diff)))
+		return;
 	ft_strcat(display, "Timeout : ");
 	ft_strcat(display, timeout);
 	free(timeout);

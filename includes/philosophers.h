@@ -4,6 +4,7 @@
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_ttf.h>
 # include <pthread.h>
+# include <time.h>
 # include "libft.h"
 
 # define MAX_LIFE 5
@@ -154,7 +155,7 @@ typedef struct	s_env
 	t_info_philo	start[2];
 	int 			victory;
 	int				state;
-	int 			timeout;
+	time_t 			end;
 }				t_env;
 
 /*
