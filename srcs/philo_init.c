@@ -11,6 +11,7 @@ t_err		philo_init_env(t_env *e)
 	e->win.width = 1280;
 	e->win.height = 720;
 	e->state = 0;
+	e->victory = ALIVE;
 	e->timeout = TIMEOUT;
 	if ((e->sys.win = SDL_CreateWindow(WIN_NAME, SDL_WINDOWPOS_UNDEFINED,
 					SDL_WINDOWPOS_UNDEFINED, e->win.width, e->win.height,

@@ -11,6 +11,7 @@ t_err	philo_init_text_name(t_env *env, int index, char *name,
 	char			*hp;
 	SDL_Surface		*surface;
 
+	ft_bzero(display, 1024);
 	hp = ft_itoa(env->philosophers->hp);
 	ft_strcpy(display, name);
 	ft_strcat(display, ":");

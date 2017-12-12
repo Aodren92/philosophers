@@ -42,6 +42,7 @@ static void		philo_last_screen_renderer(t_env *e)
 	philo_display_baguettes(e);
 	philo_display_text(e);
 	philo_display_timeout(e);
+	philo_display_conclusion(e);
 	SDL_RenderPresent(e->sys.renderer);
 }
 
@@ -88,7 +89,7 @@ t_err			philo_main_loop(t_env *e)
 					philo_start_routine(e);
 			}
 		}
-		if (philo_is_dead(e->philosophers) == DEAD)
+		if ((e->victory = philo_is_dead(e->philosophers)) == DEAD)
 			break ;
 		if (e->state && philo_should_exit(e))
 			break ;

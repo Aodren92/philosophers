@@ -6,6 +6,7 @@ void	philo_display_timeout(t_env *env)
 	char			*timeout;
 	SDL_Surface		*surface;
 
+	ft_bzero(display, 1024);
 	if (!(timeout = ft_itoa(env->timeout)))
 		return ;
 	ft_strcat(display, "Timeout : ");
