@@ -15,11 +15,11 @@ void	*philo_routine_philosophers(void *arg)
 		take_is_own_baguette(philo);
 		philo_take_right_baguette(philo);
 		philo_eat(philo);
-		usleep(SECONDE);
 		if (philo->timeout > 0)
 			philo->timeout -= 1;
 		if (philo->state != STATE_PHILO_EAT)
 			philo->hp -= DAMAGE_PER_S;
+		usleep(SECONDE);
 	}
 	return (0);
 }

@@ -9,7 +9,6 @@
 
 static void		philo_renderer(t_env *e)
 {
-	SDL_RenderClear(e->sys.renderer);
 	if (e->state == 1)
 	{
 		SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, 0, 0);
@@ -34,7 +33,6 @@ static void		philo_renderer(t_env *e)
 
 static void		philo_last_screen_renderer(t_env *e)
 {
-	SDL_RenderClear(e->sys.renderer);
 	SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, 0, 0);
 	philo_display_philosophers(e);
 	philo_display_baguettes(e);
@@ -74,7 +72,6 @@ t_err			philo_main_loop(t_env *e)
 {
 	while (1)
 	{
-
 		while (SDL_PollEvent(&e->sys.ev))
 		{
 			if (e->sys.ev.type == SDL_QUIT)
@@ -87,11 +84,11 @@ t_err			philo_main_loop(t_env *e)
 					philo_start_routine(e);
 			}
 		}
+		philo_renderer(e);
 		if ((e->victory = philo_is_dead(e->philosophers)) == DEAD)
 			break ;
 		if (e->state && philo_should_end(e))
 			break ;
-		philo_renderer(e);
 	}
 	philo_join_thread(e->philosophers);
 	philo_last_screen_loop(e);

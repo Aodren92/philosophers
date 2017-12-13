@@ -4,7 +4,7 @@ void	philo_display_philosophers(t_env *e)
 {
 	unsigned int i;
 
-	i = 0;
+	i = 1;
 	while (i < 8)
 	{
 		SDL_RenderCopyEx(e->sys.renderer, e->texture[i].tex,

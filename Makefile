@@ -13,7 +13,7 @@ OBJ_DIR_NAME = obj
 SRCS_NAME = main.c philo_init.c philo_error.c philo_exit.c philo_main_loop.c\
 			philo_error.c philo_init_pos.c philo_display_philosophers.c\
 			philo_display_baguettes.c philo_philosophers.c\
-			philo_routine_philosophers.c philo_take_dammage.c\
+			philo_routine_philosophers.c philo_is_dead.c\
 			philo_add_philo.c philo_add_baguettes.c\
 			philo_init_rect.c philo_init_pos_philo.c\
 		   	philo_init_pos_baguette_right.c philo_init_pos_baguette_left.c\

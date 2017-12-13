@@ -195,7 +195,6 @@ void			philo_init_color(t_env *env);
 ********************************************************************************
 */
 t_err			philo_start_routine(t_env *env);
-void			philo_take_damage(t_philosphers *philo);
 int				philo_is_dead(t_philosphers *philo);
 t_err			philo_join_thread(t_philosphers *philo);
 int				take_is_own_baguette(t_philosphers *philo);
