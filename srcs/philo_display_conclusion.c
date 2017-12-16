@@ -1,6 +1,6 @@
 #include "philosophers.h"
 
-static void philo_init_victory(t_env *env, char *display)
+static void		philo_init_victory(t_env *env, char *display)
 {
 	ft_strcat(display, "AND NOW IT'S TIME TO DANCE !!!!");
 	env->text_conclusion.sdl_color.r = 0;
@@ -17,7 +17,7 @@ static void philo_init_victory(t_env *env, char *display)
 	env->text_conclusion.rect_s.w = 780;
 }
 
-static void philo_init_defeat(t_env *env, char *display)
+static void		philo_init_defeat(t_env *env, char *display)
 {
 	ft_strcat(display, "GAMEOVER");
 	env->text_conclusion.sdl_color.r = 255;
@@ -34,8 +34,7 @@ static void philo_init_defeat(t_env *env, char *display)
 	env->text_conclusion.rect_s.w = 780;
 }
 
-
-void	philo_display_conclusion(t_env *env)
+void			philo_display_conclusion(t_env *env)
 {
 	char			display[1024];
 	SDL_Surface		*surface;
@@ -46,14 +45,14 @@ void	philo_display_conclusion(t_env *env)
 	else
 		philo_init_defeat(env, display);
 	if (!(surface = TTF_RenderText_Solid(env->sys.font, display,
-										 env->text_conclusion.sdl_color)))
+			env->text_conclusion.sdl_color)))
 		return ;
 	if (env->text_conclusion.tex)
 		SDL_DestroyTexture(env->text_conclusion.tex);
 	if (!(env->text_conclusion.tex =
-				  SDL_CreateTextureFromSurface(env->sys.renderer, surface)))
+			SDL_CreateTextureFromSurface(env->sys.renderer, surface)))
 		return ;
 	SDL_FreeSurface(surface);
 	SDL_RenderCopy(env->sys.renderer, env->text_conclusion.tex, 0,
-				   &env->text_conclusion.rect_d);
+		&env->text_conclusion.rect_d);
 }

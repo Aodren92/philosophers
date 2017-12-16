@@ -42,7 +42,7 @@ static void		philo_last_screen_renderer(t_env *e)
 	SDL_RenderPresent(e->sys.renderer);
 }
 
-static t_err		philo_last_screen_loop(t_env *e)
+static t_err	philo_last_screen_loop(t_env *e)
 {
 	while (1)
 	{
@@ -61,7 +61,7 @@ static t_err		philo_last_screen_loop(t_env *e)
 	return (NONE);
 }
 
-static int 		philo_should_end(t_env *e)
+static int		philo_should_end(t_env *e)
 {
 	if (e->end <= time(NULL))
 		return (1);

@@ -8,7 +8,7 @@ static void	philo_init_color_start(SDL_Color *color)
 	color->a = 255;
 }
 
-static void philo_init_pos_timeout(t_info_philo *timeout)
+static void	philo_init_pos_timeout(t_info_philo *timeout)
 {
 	timeout->rect_d.x = 960;
 	timeout->rect_d.y = 55;

@@ -5,7 +5,14 @@
 ** \XXX init func
 */
 
-int		main(void)
+static void		sub_init(void)
+{
+	philo_init_philosophers(&env);
+	philo_init_rect(&env);
+	philo_init_pos(env.pos);
+}
+
+int				main(void)
 {
 	t_env env;
 	t_err err;
@@ -24,9 +31,7 @@ int		main(void)
 		return (philo_error(&env, err));
 	if ((err = philo_init_start(&env)))
 		return (philo_error(&env, err));
-	philo_init_philosophers(&env);
-	philo_init_rect(&env);
-	philo_init_pos(env.pos);
+	sub_init(void);
 	if (!philo_main_loop(&env))
 	{
 		TTF_Quit();
