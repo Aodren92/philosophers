@@ -48,6 +48,8 @@ void	philo_display_conclusion(t_env *env)
 	if (!(surface = TTF_RenderText_Solid(env->sys.font, display,
 										 env->text_conclusion.sdl_color)))
 		return ;
+	if (env->text_conclusion.tex)
+		SDL_DestroyTexture(env->text_conclusion.tex);
 	if (!(env->text_conclusion.tex =
 				  SDL_CreateTextureFromSurface(env->sys.renderer, surface)))
 		return ;
