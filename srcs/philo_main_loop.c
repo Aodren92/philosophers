@@ -98,6 +98,8 @@ static void		philo_philosophers_hp_timeout_decrement(t_env *env)
 			{
 				if (env->philosophers[i].state != STATE_PHILO_EAT)
 					env->philosophers[i].hp -= DAMAGE_PER_S;
+				else
+					env->philosophers[i].hp = MAX_LIFE;
 				pthread_mutex_unlock(&env->philosophers[i].mutex_state);
 			}
 			if (env->philosophers[i].hp <= 0)
@@ -127,11 +129,11 @@ t_err			philo_main_loop(t_env *e)
 					philo_start_routine(e);
 			}
 		}
-		philo_renderer(e);
 		if (e->state && philo_game_timeout_decrement(e))
 			philo_philosophers_hp_timeout_decrement(e);
 		if (e->state && philo_should_end(e))
 			break ;
+		philo_renderer(e);
 	}
 	philo_join_thread(e->philosophers);
 	philo_last_screen_loop(e);

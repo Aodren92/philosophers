@@ -4,6 +4,7 @@
 ** call when is rest
 */
 
+#if 0
 int		take_is_own_baguette(t_philosphers *philo)
 {
 	if (!pthread_mutex_trylock(&philo->baguette.mutex_baguette))
@@ -75,3 +76,4 @@ int		philo_eat(t_philosphers *philo)
 	}
 	return (0);
 }
+#endif

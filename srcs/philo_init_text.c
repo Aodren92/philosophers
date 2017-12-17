@@ -14,14 +14,21 @@ t_err philo_init_text_name(t_env *env, int index, char *name,
 	(void) index;
 	(void) textcolor;
 	ft_bzero(display, 1024);
-	hp = ft_itoa(env->philosophers->hp);
+	hp = 0;
+	if (!pthread_mutex_lock(&env->philosophers[index].mutex_hp))
+	{
+		hp = ft_itoa(env->philosophers[index].hp);
+		pthread_mutex_unlock(&env->philosophers[index].mutex_hp);
+	}
+	if (!hp)
+		return NONE;
 	ft_strcpy(display, name);
 	ft_strcat(display, ":");
 	philo_space_char(display + ft_strlen(name) + 1, env->philosophers->hp, 19 -
 																		   ft_strlen(name));
 	ft_strcat(display, hp);
 	ft_strcat(display, " HP");
-	free(hp);
+		free(hp);
 	surface = TTF_RenderText_Solid(env->sys.font, display, textcolor);
 	if (!surface)
 		return (E_INIT);
