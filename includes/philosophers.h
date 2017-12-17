@@ -111,6 +111,9 @@ typedef struct	s_philosophers
 	int						timeout;
 	char					name[124];
 	pthread_t				thread;
+	pthread_mutex_t 		mutex_hp;
+	pthread_mutex_t 		mutex_state;
+	pthread_mutex_t 		mutex_timeout;
 	t_baguette				baguette;
 	char 					running;
 	struct s_philosophers	*right;
@@ -155,7 +158,9 @@ typedef struct	s_env
 	t_info_philo	start[2];
 	int 			victory;
 	int				state;
+	int 			run;
 	time_t 			end;
+	time_t 			display_time;
 }				t_env;
 
 /*

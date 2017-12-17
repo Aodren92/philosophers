@@ -31,6 +31,9 @@ static void	philo_init_mutex(t_env *env, int philo)
 {
 	pthread_mutex_init(&env->philosophers[philo].baguette.mutex_baguette,
 			0);
+	pthread_mutex_init(&env->philosophers[philo].mutex_hp, 0);
+	pthread_mutex_init(&env->philosophers[philo].mutex_timeout, 0);
+	pthread_mutex_init(&env->philosophers[philo].mutex_state, 0);
 }
 
 void		philo_init_philosophers(t_env *env)
@@ -69,5 +72,6 @@ t_err		philo_init_display(t_env *env)
 		return (E_INIT);
 	SDL_FreeSurface(bitmapsurface[0]);
 	philo_add_philos(env);
+	env->display_time = TIMEOUT;
 	return (NONE);
 }

@@ -63,9 +63,52 @@ static t_err	philo_last_screen_loop(t_env *e)
 
 static int		philo_should_end(t_env *e)
 {
-	if (e->end <= time(NULL))
+	if (e->display_time <= 0 || e->run)
 		return (1);
 	return (0);
+}
+
+static time_t 	philo_game_timeout_decrement(t_env *env)
+{
+	time_t 		new_display_time;
+
+	new_display_time = env->end - time(NULL);
+	if (env->display_time != new_display_time)
+	{
+		env->display_time = new_display_time;
+		return (1);
+	}
+	return (0);
+}
+
+static void		philo_philosophers_hp_timeout_decrement(t_env *env)
+{
+	size_t i = 0;
+
+	while (i < 7)
+	{
+		if (!pthread_mutex_lock(&env->philosophers[i].mutex_timeout))
+		{
+			env->philosophers[i].timeout -= 1;
+			pthread_mutex_unlock(&env->philosophers[i].mutex_timeout);
+		}
+		if (!pthread_mutex_lock(&env->philosophers[i].mutex_hp))
+		{
+			if (!pthread_mutex_lock(&env->philosophers[i].mutex_state))
+			{
+				if (env->philosophers[i].state != STATE_PHILO_EAT)
+					env->philosophers[i].hp -= DAMAGE_PER_S;
+				pthread_mutex_unlock(&env->philosophers[i].mutex_state);
+			}
+			if (env->philosophers[i].hp <= 0)
+			{
+				env->victory = DEAD;
+				env->run = 1;
+			}
+			pthread_mutex_unlock(&env->philosophers[i].mutex_hp);
+		}
+		i++;
+	}
 }
 
 t_err			philo_main_loop(t_env *e)
@@ -85,8 +128,8 @@ t_err			philo_main_loop(t_env *e)
 			}
 		}
 		philo_renderer(e);
-		if ((e->victory = philo_is_dead(e->philosophers)) == DEAD)
-			break ;
+		if (e->state && philo_game_timeout_decrement(e))
+			philo_philosophers_hp_timeout_decrement(e);
 		if (e->state && philo_should_end(e))
 			break ;
 	}
