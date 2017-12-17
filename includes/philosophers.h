@@ -7,7 +7,7 @@
 # include <time.h>
 # include "libft.h"
 
-# define MAX_LIFE 20
+# define MAX_LIFE 10
 # define EAT_T 1
 # define THINK_T 1
 # define REST_T 1

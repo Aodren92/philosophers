@@ -9,7 +9,7 @@ int		philo_take_his_own_baguette(t_philosphers *philo)
 	 * */
 	ret = 1;
 	//if (!pthread_mutex_trylock(&philo->baguette.mutex_baguette))
-	if (!pthread_mutex_lock(&philo->baguette.mutex_baguette))
+	if (!pthread_mutex_trylock(&philo->baguette.mutex_baguette))
 	{
 		//if (!pthread_mutex_trylock(&philo->right->mutex_state))
 	//	{
@@ -46,7 +46,7 @@ int		philo_take_right_baguette(t_philosphers *philo)
 		/**
 		 * lock the state of the right
 		 * */
-		if (!pthread_mutex_trylock(&philo->right->mutex_state))
+		if (!pthread_mutex_lock(&philo->right->mutex_state))
 		{
 #if 1
 			if (philo->right->state != STATE_PHILO_EAT)
@@ -54,7 +54,7 @@ int		philo_take_right_baguette(t_philosphers *philo)
 				/**
 				 * lock his baguette
 				 * */
-				if (!pthread_mutex_trylock(&philo->right->baguette.mutex_baguette))
+				if (!pthread_mutex_lock(&philo->right->baguette.mutex_baguette))
 				{
 					philo->state = STATE_PHILO_EAT;
 					philo->right->state = STATE_PHILO_REST;
@@ -81,7 +81,7 @@ int		philo_take_rest(t_philosphers *philo)
 	ret = 1;
 	/**
 	 * need to lock baguettes + his own state(already locked)
-	 * */
+	 **/
 	if (!pthread_mutex_lock(&philo->baguette.mutex_baguette))
 	{
 		if (!pthread_mutex_lock(&philo->right->baguette.mutex_baguette))
@@ -141,7 +141,6 @@ void	*philo_routine_philosophers(void *arg)
 				{
 					action = philo_take_rest(philo);
 				}
-				//	action = 0;
 				pthread_mutex_unlock(&philo->mutex_state);
 			}
 		}
