@@ -7,7 +7,7 @@
 # include <time.h>
 # include "libft.h"
 
-# define MAX_LIFE 10
+# define MAX_LIFE 5
 # define EAT_T 1
 # define THINK_T 1
 # define REST_T 1
@@ -205,6 +205,8 @@ t_err			philo_join_thread(t_philosphers *philo);
 int				take_is_own_baguette(t_philosphers *philo);
 int				philo_take_right_baguette(t_philosphers *philo);
 int				philo_eat(t_philosphers *philo);
+void			philo_regen_hp(t_philosphers *philo);
+
 /*
 ********************************************************************************
 **									DISPLAY

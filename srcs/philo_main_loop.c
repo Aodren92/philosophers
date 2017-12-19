@@ -92,22 +92,20 @@ static void		philo_philosophers_hp_timeout_decrement(t_env *env)
 			env->philosophers[i].timeout -= 1;
 			pthread_mutex_unlock(&env->philosophers[i].mutex_timeout);
 		}
-		if (!pthread_mutex_lock(&env->philosophers[i].mutex_hp))
+		if (!pthread_mutex_lock(&env->philosophers[i].mutex_state))
 		{
-			if (!pthread_mutex_lock(&env->philosophers[i].mutex_state))
+			if (env->philosophers[i].state != STATE_PHILO_EAT)
 			{
-				if (env->philosophers[i].state != STATE_PHILO_EAT)
-					env->philosophers[i].hp -= DAMAGE_PER_S;
-				else
-					env->philosophers[i].hp = MAX_LIFE;
-				pthread_mutex_unlock(&env->philosophers[i].mutex_state);
+				pthread_mutex_lock(&env->philosophers[i].mutex_hp);
+				env->philosophers[i].hp -= DAMAGE_PER_S;
+				if (env->philosophers[i].hp <= 0)
+				{
+					env->victory = DEAD;
+					env->run = 1;
+				}
+				pthread_mutex_unlock(&env->philosophers[i].mutex_hp);
 			}
-			if (env->philosophers[i].hp <= 0)
-			{
-				env->victory = DEAD;
-				env->run = 1;
-			}
-			pthread_mutex_unlock(&env->philosophers[i].mutex_hp);
+			pthread_mutex_unlock(&env->philosophers[i].mutex_state);
 		}
 		i++;
 	}

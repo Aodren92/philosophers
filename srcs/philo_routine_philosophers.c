@@ -74,6 +74,13 @@ int		philo_take_right_baguette(t_philosphers *philo)
 #endif
 
 
+void	philo_regen_hp(t_philosphers *philo)
+{
+	pthread_mutex_lock(&philo->mutex_hp);
+	philo->hp = MAX_LIFE;
+	pthread_mutex_unlock(&philo->mutex_hp);
+}
+
 int		philo_take_rest(t_philosphers *philo)
 {
 	int		ret;
@@ -135,7 +142,8 @@ void	*philo_routine_philosophers(void *arg)
 				}
 				else if (philo->state == STATE_PHILO_THINK)
 				{
-					action = philo_take_right_baguette(philo);
+					if (!(action = philo_take_right_baguette(philo)))
+						philo_regen_hp(philo);
 				}
 				else if (philo->state == STATE_PHILO_EAT)
 				{
