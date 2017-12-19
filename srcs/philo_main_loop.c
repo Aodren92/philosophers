@@ -84,7 +84,7 @@ static time_t 	philo_game_timeout_decrement(t_env *env)
 static void		philo_philosophers_hp_timeout_decrement(t_env *env)
 {
 	size_t i = 0;
-	int 	do_action = 1;
+	int 	do_action = 0;
 
 	while (i < 7)
 	{
@@ -93,7 +93,7 @@ static void		philo_philosophers_hp_timeout_decrement(t_env *env)
 		pthread_mutex_unlock(&env->philosophers[i].mutex_timeout);
 		pthread_mutex_lock(&env->philosophers[i].mutex_state);
 		if (env->philosophers[i].state != STATE_PHILO_EAT)
-			do_action = 0;
+			do_action = 1;
 		pthread_mutex_lock(&env->philosophers[i].mutex_hp);
 		if (do_action)
 		{
