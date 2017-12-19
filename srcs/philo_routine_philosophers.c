@@ -36,8 +36,10 @@ int		philo_take_his_own_baguette(t_philosphers *philo)
 int		philo_take_right_baguette(t_philosphers *philo)
 {
 	int ret;
+	int do_eat;
 
 	ret = 1;
+	do_eat = 0;
 	/**
 	 * need to lock his own baguette first
 	 * */
@@ -54,6 +56,10 @@ int		philo_take_right_baguette(t_philosphers *philo)
 				/**
 				 * lock his baguette
 				 * */
+/*				pthread_mutex_lock(&philo->right->mutex_hp);
+				if (philo->right->hp >= 3)
+					do_eat = 1;
+				pthread_mutex_unlock(&philo->right->mutex_hp);*/
 				if (!pthread_mutex_lock(&philo->right->baguette.mutex_baguette))
 				{
 					philo->state = STATE_PHILO_EAT;
