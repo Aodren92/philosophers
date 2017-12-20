@@ -22,11 +22,9 @@ static void	philo_init_pos_timeout(t_info_philo *timeout)
 
 t_err		philo_init_start(t_env *env)
 {
-	unsigned int	i;
 	SDL_Surface		*surface;
 	SDL_Color		textcolor;
 
-	i = 0;
 	philo_init_color_start(&textcolor);
 	if (!(surface = TTF_RenderText_Solid(env->sys.font_start,
 		"PhiLoSoPHerS", textcolor)))
