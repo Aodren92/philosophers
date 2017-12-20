@@ -113,8 +113,15 @@ void	*philo_routine_philosophers(void *arg)
 				}
 				else if (philo->state == STATE_PHILO_THINK)
 				{
-					if (!(action = philo_take_right_baguette(philo)))
-						philo_regen_hp(philo);
+					pthread_mutex_lock(&philo->right->mutex_hp);
+					if (philo->right->hp >= MAX_LIFE - 2)
+					{
+						pthread_mutex_unlock(&philo->right->mutex_hp);
+						if (!(action = philo_take_right_baguette(philo)))
+							philo_regen_hp(philo);
+					}
+					else
+						pthread_mutex_unlock(&philo->right->mutex_hp);
 				}
 				else if (philo->state == STATE_PHILO_EAT)
 				{
