@@ -1,47 +1,6 @@
 #include "philosophers.h"
 #include <time.h>
 
-#define SECONDE 1000000
-
-/*
-** \XXX rename func
-*/
-
-static void		philo_renderer(t_env *e)
-{
-	if (e->state == 1)
-	{
-		SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, 0, 0);
-		philo_display_philosophers(e);
-		philo_display_baguettes(e);
-		philo_display_text(e);
-		philo_display_timeout(e);
-		SDL_RenderPresent(e->sys.renderer);
-	}
-	else
-	{
-		usleep(SECONDE / 2);
-		SDL_RenderCopy(e->sys.renderer, e->start[0].tex, 0, 0);
-		SDL_RenderCopy(e->sys.renderer, e->start[1].tex, 0,
-				&e->start[1].rect_d);
-		SDL_RenderPresent(e->sys.renderer);
-		usleep(SECONDE / 2);
-		SDL_RenderCopy(e->sys.renderer, e->start[0].tex, 0, 0);
-		SDL_RenderPresent(e->sys.renderer);
-	}
-}
-
-static void		philo_last_screen_renderer(t_env *e)
-{
-	SDL_RenderCopy(e->sys.renderer, e->texture[0].tex, 0, 0);
-	philo_display_philosophers(e);
-	philo_display_baguettes(e);
-	philo_display_text(e);
-	philo_display_timeout(e);
-	philo_display_conclusion(e);
-	SDL_RenderPresent(e->sys.renderer);
-}
-
 static t_err	philo_last_screen_loop(t_env *e)
 {
 	while (1)
@@ -68,9 +27,9 @@ static int		philo_should_end(t_env *e)
 	return (0);
 }
 
-static time_t 	philo_game_timeout_decrement(t_env *env)
+static time_t	philo_game_timeout_decrement(t_env *env)
 {
-	time_t 		new_display_time;
+	time_t		new_display_time;
 
 	new_display_time = env->end - time(NULL);
 	if (env->display_time != new_display_time)
@@ -83,8 +42,9 @@ static time_t 	philo_game_timeout_decrement(t_env *env)
 
 static void		philo_philosophers_hp_timeout_decrement(t_env *env)
 {
-	size_t i = 0;
+	size_t i;
 
+	i = 0;
 	while (i < 7)
 	{
 		pthread_mutex_lock(&env->philosophers[i].mutex_timeout);
@@ -98,7 +58,7 @@ static void		philo_philosophers_hp_timeout_decrement(t_env *env)
 			if (env->philosophers[i].hp <= 0)
 			{
 				env->victory = DEAD;
-				env->run     = 1;
+				env->run = 1;
 			}
 			pthread_mutex_unlock(&env->philosophers[i].mutex_hp);
 		}
