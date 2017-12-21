@@ -193,7 +193,6 @@ t_err			philo_add_baguettes(t_env *env);
 
 t_err			philo_init_text(t_env *env);
 void			philo_init_color(t_env *env);
-
 /*
 ********************************************************************************
 **									PHILOSOPHERS
@@ -203,7 +202,10 @@ t_err			philo_start_routine(t_env *env);
 int				philo_is_dead(t_philosphers *philo);
 t_err			philo_join_thread(t_philosphers *philo);
 void			philo_regen_hp(t_philosphers *philo);
-
+int				philo_take_his_own_baguette(t_philosphers *philo);
+int				philo_take_right_baguette(t_philosphers *philo);
+int				philo_take_rest(t_philosphers *philo);
+void			*philo_routine_philosophers(void *arg);
 /*
 ********************************************************************************
 **									DISPLAY
@@ -231,7 +233,6 @@ void			philo_init_pos_baguette_left(t_pos *pos);
 void			philo_init_pos_name(t_env *env);
 t_err			philo_exit(t_env *env, t_err err);
 t_err			philo_exit_gfx(t_env *env, t_err err);
-
 /*
 ********************************************************************************
 **									DEBUG
