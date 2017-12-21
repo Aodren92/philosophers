@@ -1,13 +1,40 @@
 #include "philosophers.h"
 
-void	philo_regen_hp(t_philosphers *philo)
+static void		do_action(char *action, t_philosphers *philo)
+{
+	if (*action)
+	{
+		if (!pthread_mutex_trylock(&philo->mutex_state))
+		{
+			if (philo->state == STATE_PHILO_REST)
+				*action = philo_take_his_own_baguette(philo);
+			else if (philo->state == STATE_PHILO_THINK)
+			{
+				pthread_mutex_lock(&philo->right->mutex_hp);
+				if (philo->right->hp >= MAX_LIFE - 2)
+				{
+					pthread_mutex_unlock(&philo->right->mutex_hp);
+					if (!(*action = philo_take_right_baguette(philo)))
+						philo_regen_hp(philo);
+				}
+				else
+					pthread_mutex_unlock(&philo->right->mutex_hp);
+			}
+			else if (philo->state == STATE_PHILO_EAT)
+				*action = philo_take_rest(philo);
+			pthread_mutex_unlock(&philo->mutex_state);
+		}
+	}
+}
+
+void			philo_regen_hp(t_philosphers *philo)
 {
 	pthread_mutex_lock(&philo->mutex_hp);
 	philo->hp = MAX_LIFE;
 	pthread_mutex_unlock(&philo->mutex_hp);
 }
 
-void	*philo_routine_philosophers(void *arg)
+void			*philo_routine_philosophers(void *arg)
 {
 	t_philosphers	*philo;
 	char			action;
@@ -31,33 +58,7 @@ void	*philo_routine_philosophers(void *arg)
 				action = 1;
 			pthread_mutex_unlock(&philo->mutex_timeout);
 		}
-		if (action)
-		{
-			if (!pthread_mutex_trylock(&philo->mutex_state))
-			{
-				if (philo->state == STATE_PHILO_REST)
-				{
-					action = philo_take_his_own_baguette(philo);
-				}
-				else if (philo->state == STATE_PHILO_THINK)
-				{
-					pthread_mutex_lock(&philo->right->mutex_hp);
-					if (philo->right->hp >= MAX_LIFE - 2)
-					{
-						pthread_mutex_unlock(&philo->right->mutex_hp);
-						if (!(action = philo_take_right_baguette(philo)))
-							philo_regen_hp(philo);
-					}
-					else
-						pthread_mutex_unlock(&philo->right->mutex_hp);
-				}
-				else if (philo->state == STATE_PHILO_EAT)
-				{
-					action = philo_take_rest(philo);
-				}
-				pthread_mutex_unlock(&philo->mutex_state);
-			}
-		}
+		do_action(&action, philo);
 	}
 	return (0);
 }
